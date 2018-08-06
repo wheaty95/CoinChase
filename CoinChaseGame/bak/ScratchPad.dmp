@@ -1,0 +1,2084 @@
+00001  0000             ;===============================================================================
+00002  0001             ; $00-$FF  PAGE ZERO (256 BYTES)
+00003  0001                        
+00004  0001                        ; $00-$01   RESERVED FOR IO
+00005  0001             ZEROPAGETEMP = $02
+00006  0001                        ; $03-$8F   RESERVED FOR BASIC
+00007  0001                        ; USING $73-$8A CHRGET AS BASIC NOT USED FOR OUR GAME
+00008  0001             ZEROPAGEPARAM1 = $73
+00009  0001             ZEROPAGEPARAM2 = $74
+00010  0001             ZEROPAGEPARAM3 = $75
+00011  0001             ZEROPAGEPARAM4 = $76
+00012  0001             ZEROPAGEPARAM5 = $77
+00013  0001             ZEROPAGEPARAM6 = $78
+00014  0001             ZEROPAGEPARAM7 = $79
+00015  0001             ZEROPAGEPARAM8 = $7A
+00016  0001             ZEROPAGEPARAM9 = $7B
+00017  0001                        ; $90-$FA   RESERVED FOR KERNAL
+00018  0001             ZEROPAGELOW = $FB
+00019  0001             ZEROPAGEHIGH = $FC
+00020  0001             ZEROPAGELOW2 = $FD
+00021  0001             ZEROPAGEHIGH2 = $FE
+00022  0001                        ; $FF       RESERVED FOR KERNAL
+00023  0001             
+00024  0001             ;===============================================================================
+00025  0001             ; $0100-$01FF  STACK (256 BYTES)
+00026  0001             
+00027  0001             
+00028  0001             ;===============================================================================
+00029  0001             ; $0200-$9FFF  RAM (40K)
+00030  0001             
+00031  0001             SCREENRAM  = $0400
+00032  0001             SPRITE0    = $07F8
+00033  0001             
+00034  0001             ; $0801
+00035  0001             ; GAME CODE IS PLACED HERE BY USING THE *=$0801 DIRECTIVE
+00036  0001             ; IN GAMEMAIN.ASM
+00037  0001             
+00038  0001             
+00039  0001             ; 192 DECIMAL * 64(SPRITE SIZE) = 12288(HEX $3000)
+00040  0001             SPRITERAM  = 192
+00041  0001             *          = $3000
+00042  3000             @          
+00043  3000  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00044  3008  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00045  3010  00 00 00              BYTE $00,$00,$00,$3C,$00,$00,$FF,$00
+00046  3018  01 FF 80              BYTE $01,$FF,$80,$03,$9C,$C0,$03,$08
+00047  3020  40 03 29              BYTE $40,$03,$29,$40,$07,$29,$60,$07
+00048  3028  9C E0 07              BYTE $9C,$E0,$07,$FF,$E0,$07,$FF,$E0
+00049  3030  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$BD
+00050  3038  C0 03 18              BYTE $C0,$03,$18,$C0,$00,$00,$00,$00
+00051  3040  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00052  3048  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00053  3050  00 00 00              BYTE $00,$00,$00,$3C,$00,$00,$FF,$00
+00054  3058  01 FF 80              BYTE $01,$FF,$80,$03,$9C,$C0,$03,$08
+00055  3060  40 03 29              BYTE $40,$03,$29,$40,$07,$29,$60,$07
+00056  3068  9C E0 07              BYTE $9C,$E0,$07,$FF,$E0,$07,$FF,$E0
+00057  3070  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$BD
+00058  3078  C0 03 18              BYTE $C0,$03,$18,$C0,$00,$00,$00,$00
+00059  3080  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00060  3088  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$07
+00061  3090  F0 00 0F              BYTE $F0,$00,$0F,$FE,$00,$0F,$FF,$00
+00062  3098  07 E3 80              BYTE $07,$E3,$80,$03,$C1,$80,$07,$D9
+00063  30A0  C0 0F E3              BYTE $C0,$0F,$E3,$C0,$0F,$FF,$C0,$07
+00064  30A8  E3 C0 03              BYTE $E3,$C0,$03,$C1,$80,$07,$D9,$80
+00065  30B0  0F E3 00              BYTE $0F,$E3,$00,$0F,$FE,$00,$03,$F0
+00066  30B8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00067  30C0  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00068  30C8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$07
+00069  30D0  F0 00 0F              BYTE $F0,$00,$0F,$FE,$00,$0F,$FF,$00
+00070  30D8  07 E3 80              BYTE $07,$E3,$80,$03,$C1,$80,$07,$D9
+00071  30E0  C0 0F E3              BYTE $C0,$0F,$E3,$C0,$0F,$FF,$C0,$07
+00072  30E8  E3 C0 03              BYTE $E3,$C0,$03,$C1,$80,$07,$D9,$80
+00073  30F0  0F E3 00              BYTE $0F,$E3,$00,$0F,$FE,$00,$03,$F0
+00074  30F8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00075  3100  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00076  3108  00 00 00              BYTE $00,$00,$00,$00,$03,$18,$C0,$03
+00077  3110  BD E0 07              BYTE $BD,$E0,$07,$FF,$E0,$07,$FF,$E0
+00078  3118  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$39
+00079  3120  E0 06 94              BYTE $E0,$06,$94,$E0,$02,$94,$C0,$02
+00080  3128  10 C0 03              BYTE $10,$C0,$03,$39,$C0,$01,$FF,$80
+00081  3130  00 FF 00              BYTE $00,$FF,$00,$00,$3C,$00,$00,$00
+00082  3138  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00083  3140  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00084  3148  00 00 00              BYTE $00,$00,$00,$00,$03,$18,$C0,$03
+00085  3150  BD E0 07              BYTE $BD,$E0,$07,$FF,$E0,$07,$FF,$E0
+00086  3158  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$39
+00087  3160  E0 06 94              BYTE $E0,$06,$94,$E0,$02,$94,$C0,$02
+00088  3168  10 C0 03              BYTE $10,$C0,$03,$39,$C0,$01,$FF,$80
+00089  3170  00 FF 00              BYTE $00,$FF,$00,$00,$3C,$00,$00,$00
+00090  3178  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00091  3180  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00092  3188  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00093  3190  0F C0 00              BYTE $0F,$C0,$00,$7F,$F0,$00,$C7,$F0
+00094  3198  01 9B E0              BYTE $01,$9B,$E0,$01,$83,$C0,$03,$C7
+00095  31A0  E0 03 FF              BYTE $E0,$03,$FF,$F0,$03,$C7,$F0,$03
+00096  31A8  9B E0 01              BYTE $9B,$E0,$01,$83,$C0,$01,$C7,$E0
+00097  31B0  00 FF F0              BYTE $00,$FF,$F0,$00,$7F,$F0,$00,$0F
+00098  31B8  E0 00 00              BYTE $E0,$00,$00,$00,$00,$00,$00,$00
+00099  31C0  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00100  31C8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00101  31D0  0F C0 00              BYTE $0F,$C0,$00,$7F,$F0,$00,$C7,$F0
+00102  31D8  01 9B E0              BYTE $01,$9B,$E0,$01,$83,$C0,$03,$C7
+00103  31E0  E0 03 FF              BYTE $E0,$03,$FF,$F0,$03,$C7,$F0,$03
+00104  31E8  9B E0 01              BYTE $9B,$E0,$01,$83,$C0,$01,$C7,$E0
+00105  31F0  00 FF F0              BYTE $00,$FF,$F0,$00,$7F,$F0,$00,$0F
+00106  31F8  E0 00 00              BYTE $E0,$00,$00,$00,$00,$00,$00,$00
+00107  3200             
+00108  3200             @          
+00109  3200                        INCBIN GHOST.SPT,1,8,TRUE
+00110  3200             
+00111  3200             ;===============================================================================
+00112  3200             ; $A000-$BFFF  BASIC ROM (8K)
+00113  3200             
+00114  3200             
+00115  3200             ;===============================================================================
+00116  3200             ; $C000-$CFFF  RAM (4K)
+00117  3200             
+00118  3200             
+00119  3200             ;===============================================================================
+00120  3200             ; $D000-$DFFF  IO (4K)
+00121  3200             
+00122  3200             ; THESE ARE SOME OF THE C64 REGISTERS THAT ARE MAPPED INTO
+00123  3200             ; IO MEMORY SPACE
+00124  3200             ; NAMES TAKEN FROM 'MAPPING THE COMMODORE 64' BOOK
+00125  3200             
+00126  3200             SP0X       = $D000
+00127  3200             SP0Y       = $D001
+00128  3200             MSIGX      = $D010
+00129  3200             RASTER     = $D012
+00130  3200             SPENA      = $D015
+00131  3200             SCROLX     = $D016
+00132  3200             VMCSB      = $D018
+00133  3200             SPBGPR     = $D01B
+00134  3200             SPMC       = $D01C
+00135  3200             SPSPCL     = $D01E
+00136  3200             EXTCOL     = $D020
+00137  3200             BGCOL0     = $D021
+00138  3200             BGCOL1     = $D022
+00139  3200             BGCOL2     = $D023
+00140  3200             BGCOL3     = $D024
+00141  3200             SPMC0      = $D025
+00142  3200             SPMC1      = $D026
+00143  3200             SP0COL     = $D027
+00144  3200             FRELO1     = $D400 ;(54272)
+00145  3200             FREHI1     = $D401 ;(54273)
+00146  3200             PWLO1      = $D402 ;(54274)
+00147  3200             PWHI1      = $D403 ;(54275)
+00148  3200             VCREG1     = $D404 ;(54276)
+00149  3200             ATDCY1     = $D405 ;(54277)
+00150  3200             SUREL1     = $D406 ;(54278)
+00151  3200             FRELO2     = $D407 ;(54279)
+00152  3200             FREHI2     = $D408 ;(54280)
+00153  3200             PWLO2      = $D409 ;(54281)
+00154  3200             PWHI2      = $D40A ;(54282)
+00155  3200             VCREG2     = $D40B ;(54283)
+00156  3200             ATDCY2     = $D40C ;(54284)
+00157  3200             SUREL2     = $D40D ;(54285)
+00158  3200             FRELO3     = $D40E ;(54286)
+00159  3200             FREHI3     = $D40F ;(54287)
+00160  3200             PWLO3      = $D410 ;(54288)
+00161  3200             PWHI3      = $D411 ;(54289)
+00162  3200             VCREG3     = $D412 ;(54290)
+00163  3200             ATDCY3     = $D413 ;(54291)
+00164  3200             SUREL3     = $D414 ;(54292)
+00165  3200             SIGVOL     = $D418 ;(54296)
+00166  3200             COLORRAM   = $D800
+00167  3200             CIAPRA     = $DC00
+00168  3200             CIAPRB     = $DC01
+00169  3200             
+00170  3200             ;===============================================================================
+00171  3200             ; $E000-$FFFF  KERNAL ROM (8K)
+00172  3200             
+00173  3200             
+00174  3200             ;===============================================================================
+00175  3200             
+00176  3200             ;===============================================================================
+00177  3200             ; CONSTANTS
+00178  3200             
+00179  3200                        ; USE JOYSTICK 2, CHANGE TO CIAPRB FOR JOYSTICK 1
+00180  3200             JOYSTICKREGISTER = CIAPRA
+00181  3200             
+00182  3200             GAMEPORTUPMASK = %00000001
+00183  3200             GAMEPORTDOWNMASK = %00000010
+00184  3200             GAMEPORTLEFTMASK = %00000100
+00185  3200             GAMEPORTRIGHTMASK = %00001000
+00186  3200             GAMEPORTFIREMASK = %00010000
+00187  3200             FIREDELAYMAX = 30
+00188  3200             
+00189  3200             ;===============================================================================
+00190  3200             ; VARIABLES
+00191  3200             
+00192  3200  00         GAMEPORTLASTFRAME BYTE 0
+00193  3201  00         GAMEPORTTHISFRAME BYTE 0
+00194  3202  00         GAMEPORTDIFF BYTE 0
+00195  3203  00         FIREDELAY  BYTE 0
+00196  3204  01         FIREBLIP   BYTE 1 ; REVERSED LOGIC TO MATCH OTHER INPUT
+00197  3205             
+00198  3205             ;===============================================================================
+00199  3205             ; MACROS/SUBROUTINES
+00200  3205             
+00201  3205             DEFM       LIBINPUT_GETHELD ; (BUTTONMASK)
+00202  3205             
+00203  3205                        LDA GAMEPORTTHISFRAME
+00204  3205                        AND #/1
+00205  3205                        ENDM ; TEST WITH BNE ON RETURN
+00206  3205             
+00207  3205             ;===============================================================================
+00208  3205             
+00209  3205             DEFM       LIBINPUT_GETFIREPRESSED
+00210  3205                        
+00211  3205                        LDA #1
+00212  3205                        STA FIREBLIP ; CLEAR FIRE FLAG
+00213  3205             
+00214  3205                        ; IS FIRE HELD?
+00215  3205                        LDA GAMEPORTTHISFRAME
+00216  3205                        AND #GAMEPORTFIREMASK
+00217  3205                        BNE @NOTHELD
+00218  3205             
+00219  3205             @HELD
+00220  3205                        ; IS THIS 1ST FRAME?
+00221  3205                        LDA GAMEPORTDIFF
+00222  3205                        AND #GAMEPORTFIREMASK
+00223  3205                        
+00224  3205                        BEQ @NOTFIRST
+00225  3205                        LDA #0
+00226  3205                        STA FIREBLIP ; FIRE
+00227  3205             
+00228  3205                        ; RESET DELAY
+00229  3205                        LDA #FIREDELAYMAX
+00230  3205                        STA FIREDELAY
+00231  3205             @NOTFIRST
+00232  3205             
+00233  3205                        ; IS THE DELAY ZERO?
+00234  3205                        LDA FIREDELAY
+00235  3205                        BNE @NOTHELD
+00236  3205                        LDA #0
+00237  3205                        STA FIREBLIP ; FIRE
+00238  3205                        ; RESET DELAY
+00239  3205                        LDA #FIREDELAYMAX
+00240  3205                        STA FIREDELAY
+00241  3205                        
+00242  3205             @NOTHELD   
+00243  3205                        LDA FIREBLIP
+00244  3205                        ENDM ; TEST WITH BNE ON RETURN
+00245  3205             
+00246  3205             ;===============================================================================
+00247  3205             
+00248  3205             LIBINPUTUPDATE 
+00249  3205             
+00250  3205  AD 00 DC              LDA JOYSTICKREGISTER
+00251  3208  8D 01 32              STA GAMEPORTTHISFRAME
+00252  320B             
+00253  320B  4D 00 32              EOR GAMEPORTLASTFRAME
+00254  320E  8D 02 32              STA GAMEPORTDIFF
+00255  3211             
+00256  3211                        
+00257  3211  AD 03 32              LDA FIREDELAY
+00258  3214  F0 03                 BEQ LIUDELAYZERO
+00259  3216  CE 03 32              DEC FIREDELAY
+00260  3219             LIUDELAYZERO 
+00261  3219             
+00262  3219  AD 01 32              LDA GAMEPORTTHISFRAME
+00263  321C  8D 00 32              STA GAMEPORTLASTFRAME
+00264  321F             
+00265  321F  60                    RTS
+00266  3220             
+00267  3220             ;===============================================================================
+00268  3220             ; MACROS/SUBROUTINES
+00269  3220             
+00270  3220             DEFM       LIBMATH_ABS_AA  ; /1 = NUMBER (ADDRESS)
+00271  3220                        ; /2 = RESULT (ADDRESS)
+00272  3220                        LDA /1
+00273  3220                        BPL @POSITIVE
+00274  3220                        EOR #$FF        ; INVERT THE BITS
+00275  3220                        STA /2
+00276  3220                        INC /2          ; ADD 1 TO GIVE THE TWO'S COMPLIMENT
+00277  3220                        JMP @DONE
+00278  3220             @POSITIVE
+00279  3220                        STA /2
+00280  3220             @DONE
+00281  3220                        ENDM
+00282  3220             
+00283  3220             ;==============================================================================
+00284  3220             
+00285  3220             DEFM       LIBMATH_ADD8BIT_AAA
+00286  3220                        ; /1 = 1ST NUMBER (ADDRESS)
+00287  3220                        ; /2 = 2ND NUMBER (ADDRESS)
+00288  3220                        ; /3 = SUM (ADDRESS)
+00289  3220                        CLC     ; CLEAR CARRY BEFORE ADD
+00290  3220                        LDA /1  ; GET FIRST NUMBER
+00291  3220                        ADC /2 ; ADD TO SECOND NUMBER
+00292  3220                        STA /3  ; STORE IN SUM
+00293  3220                        ENDM
+00294  3220             
+00295  3220             ;==============================================================================
+00296  3220             
+00297  3220             DEFM       LIBMATH_ADD8BIT_AVA
+00298  3220                        ; /1 = 1ST NUMBER (ADDRESS)
+00299  3220                        ; /2 = 2ND NUMBER (VALUE)
+00300  3220                        ; /3 = SUM (ADDRESS)
+00301  3220                        CLC     ; CLEAR CARRY BEFORE ADD
+00302  3220                        LDA /1  ; GET FIRST NUMBER
+00303  3220                        ADC #/2 ; ADD TO SECOND NUMBER
+00304  3220                        STA /3  ; STORE IN SUM
+00305  3220                        ENDM
+00306  3220             
+00307  3220             ;==============================================================================
+00308  3220             
+00309  3220             DEFM       LIBMATH_ADD16BIT_AAVAAA
+00310  3220                        ; /1 = 1ST NUMBER HIGH BYTE (ADDRESS)
+00311  3220                        ; /2 = 1ST NUMBER LOW BYTE (ADDRESS)
+00312  3220                        ; /3 = 2ND NUMBER HIGH BYTE (VALUE)
+00313  3220                        ; /4 = 2ND NUMBER LOW BYTE (ADDRESS)
+00314  3220                        ; /5 = SUM HIGH BYTE (ADDRESS)
+00315  3220                        ; /6 = SUM LOW BYTE (ADDRESS)
+00316  3220                        CLC     ; CLEAR CARRY BEFORE FIRST ADD
+00317  3220                        LDA /2  ; GET LSB OF FIRST NUMBER
+00318  3220                        ADC /4  ; ADD LSB OF SECOND NUMBER
+00319  3220                        STA /6  ; STORE IN LSB OF SUM
+00320  3220                        LDA /1  ; GET MSB OF FIRST NUMBER
+00321  3220                        ADC #/3 ; ADD CARRY AND MSB OF NUM2
+00322  3220                        STA /5  ; STORE SUM IN MSB OF SUM
+00323  3220                        ENDM
+00324  3220             
+00325  3220             ;==============================================================================
+00326  3220             
+00327  3220             DEFM       LIBMATH_ADD16BIT_AAVVAA
+00328  3220                        ; /1 = 1ST NUMBER HIGH BYTE (ADDRESS)
+00329  3220                        ; /2 = 1ST NUMBER LOW BYTE (ADDRESS)
+00330  3220                        ; /3 = 2ND NUMBER HIGH BYTE (VALUE)
+00331  3220                        ; /4 = 2ND NUMBER LOW BYTE (VALUE)
+00332  3220                        ; /5 = SUM HIGH BYTE (ADDRESS)
+00333  3220                        ; /6 = SUM LOW BYTE (ADDRESS)
+00334  3220                        CLC     ; CLEAR CARRY BEFORE FIRST ADD
+00335  3220                        LDA /2  ; GET LSB OF FIRST NUMBER
+00336  3220                        ADC #/4 ; ADD LSB OF SECOND NUMBER
+00337  3220                        STA /6  ; STORE IN LSB OF SUM
+00338  3220                        LDA /1  ; GET MSB OF FIRST NUMBER
+00339  3220                        ADC #/3 ; ADD CARRY AND MSB OF NUM2
+00340  3220                        STA /5  ; STORE SUM IN MSB OF SUM
+00341  3220                        ENDM
+00342  3220             
+00343  3220             ;==============================================================================
+00344  3220             
+00345  3220             DEFM       LIBMATH_MIN8BIT_AV      ; /1 = NUMBER 1 (ADDRESS)
+00346  3220                        ; /2 = NUMBER 2 (VALUE)
+00347  3220                        
+00348  3220                        LDA #/2                 ; LOAD NUMBER 2
+00349  3220                        CMP /1                  ; COMPARE WITH NUMBER 1
+00350  3220                        BCS @SKIP               ; IF NUMBER 2 >= NUMBER 1 THEN SKIP
+00351  3220                        STA /1                  ; ELSE REPLACE NUMBER1 WITH NUMBER2
+00352  3220             @SKIP
+00353  3220                        ENDM
+00354  3220             
+00355  3220             ;==============================================================================
+00356  3220             
+00357  3220             DEFM       LIBMATH_MAX8BIT_AV      ; /1 = NUMBER 1 (ADDRESS)
+00358  3220                        ; /2 = NUMBER 2 (VALUE)
+00359  3220                        
+00360  3220                        LDA #/2                 ; LOAD NUMBER 2
+00361  3220                        CMP /1                  ; COMPARE WITH NUMBER 1
+00362  3220                        BCC @SKIP               ; IF NUMBER 2 < NUMBER 1 THEN SKIP
+00363  3220                        STA /1                  ; ELSE REPLACE NUMBER1 WITH NUMBER2
+00364  3220             @SKIP
+00365  3220                        ENDM
+00366  3220             
+00367  3220             ;==============================================================================
+00368  3220             
+00369  3220             DEFM       LIBMATH_MIN16BIT_AAVV   ; /1 = NUMBER 1 HIGH (ADDRESS)
+00370  3220                        ; /2 = NUMBER 1 LOW (ADDRESS)
+00371  3220                        ; /3 = NUMBER 2 HIGH (VALUE)
+00372  3220                        ; /4 = NUMBER 2 LOW (VALUE)
+00373  3220                        
+00374  3220                        ; HIGH BYTE
+00375  3220                        LDA /1                  ; LOAD NUMBER 1
+00376  3220                        CMP #/3                 ; COMPARE WITH NUMBER 2
+00377  3220                        BMI @SKIP               ; IF NUMBER 1 < NUMBER 2 THEN SKIP
+00378  3220                        LDA #/3
+00379  3220                        STA /1                  ; ELSE REPLACE NUMBER1 WITH NUMBER2
+00380  3220             
+00381  3220                        ; LOW BYTE
+00382  3220                        LDA #/4                 ; LOAD NUMBER 2
+00383  3220                        CMP /2                  ; COMPARE WITH NUMBER 1
+00384  3220                        BCS @SKIP               ; IF NUMBER 2 >= NUMBER 1 THEN SKIP
+00385  3220                        STA /2                  ; ELSE REPLACE NUMBER1 WITH NUMBER2
+00386  3220             @SKIP
+00387  3220                        ENDM
+00388  3220             
+00389  3220             ;==============================================================================
+00390  3220             
+00391  3220             DEFM       LIBMATH_MAX16BIT_AAVV   ; /1 = NUMBER 1 HIGH (ADDRESS)
+00392  3220                        ; /2 = NUMBER 1 LOW (ADDRESS)
+00393  3220                        ; /3 = NUMBER 2 HIGH (VALUE)
+00394  3220                        ; /4 = NUMBER 2 LOW (VALUE)
+00395  3220                        
+00396  3220                        ; HIGH BYTE
+00397  3220                        LDA #/3                 ; LOAD NUMBER 2
+00398  3220                        CMP /1                  ; COMPARE WITH NUMBER 1
+00399  3220                        BCC @SKIP               ; IF NUMBER 2 < NUMBER 1 THEN SKIP
+00400  3220                        STA /1                  ; ELSE REPLACE NUMBER1 WITH NUMBER2
+00401  3220             
+00402  3220                        ; LOW BYTE
+00403  3220                        LDA #/4                 ; LOAD NUMBER 2
+00404  3220                        CMP /2                  ; COMPARE WITH NUMBER 1
+00405  3220                        BCC @SKIP               ; IF NUMBER 2 < NUMBER 1 THEN SKIP
+00406  3220                        STA /2                  ; ELSE REPLACE NUMBER1 WITH NUMBER2
+00407  3220             
+00408  3220             @SKIP
+00409  3220                        ENDM
+00410  3220             
+00411  3220             ;==============================================================================
+00412  3220             
+00413  3220             DEFM       LIBMATH_SUB8BIT_AAA
+00414  3220                        ; /1 = 1ST NUMBER (ADDRESS)
+00415  3220                        ; /2 = 2ND NUMBER (ADDRESS)
+00416  3220                        ; /3 = SUM (ADDRESS)
+00417  3220                        SEC     ; SEC IS THE SAME AS CLEAR BORROW
+00418  3220                        LDA /1  ; GET FIRST NUMBER
+00419  3220                        SBC /2  ; SUBTRACT SECOND NUMBER
+00420  3220                        STA /3  ; STORE IN SUM
+00421  3220                        ENDM
+00422  3220             
+00423  3220             ;==============================================================================
+00424  3220             
+00425  3220             DEFM       LIBMATH_SUB8BIT_AVA
+00426  3220                        ; /1 = 1ST NUMBER (ADDRESS)
+00427  3220                        ; /2 = 2ND NUMBER (VALUE)
+00428  3220                        ; /3 = SUM (ADDRESS)
+00429  3220                        SEC     ; SEC IS THE SAME AS CLEAR BORROW
+00430  3220                        LDA /1  ; GET FIRST NUMBER
+00431  3220                        SBC #/2 ; SUBTRACT SECOND NUMBER
+00432  3220                        STA /3  ; STORE IN SUM
+00433  3220                        ENDM
+00434  3220             
+00435  3220             ;==============================================================================
+00436  3220             
+00437  3220             DEFM       LIBMATH_SUB16BIT_AAVAAA
+00438  3220                        ; /1 = 1ST NUMBER HIGH BYTE (ADDRESS)
+00439  3220                        ; /2 = 1ST NUMBER LOW BYTE (ADDRESS)
+00440  3220                        ; /3 = 2ND NUMBER HIGH BYTE (VALUE)
+00441  3220                        ; /4 = 2ND NUMBER LOW BYTE (ADDRESS)
+00442  3220                        ; /5 = SUM HIGH BYTE (ADDRESS)
+00443  3220                        ; /6 = SUM LOW BYTE (ADDRESS)
+00444  3220                        SEC     ; SEC IS THE SAME AS CLEAR BORROW
+00445  3220                        LDA /2  ; GET LSB OF FIRST NUMBER
+00446  3220                        SBC /4 ; SUBTRACT LSB OF SECOND NUMBER
+00447  3220                        STA /6  ; STORE IN LSB OF SUM
+00448  3220                        LDA /1  ; GET MSB OF FIRST NUMBER
+00449  3220                        SBC #/3 ; SUBTRACT BORROW AND MSB OF NUM2
+00450  3220                        STA /5  ; STORE SUM IN MSB OF SUM
+00451  3220                        ENDM
+00452  3220             
+00453  3220             ;==============================================================================
+00454  3220             
+00455  3220             DEFM       LIBMATH_SUB16BIT_AAVVAA
+00456  3220                        ; /1 = 1ST NUMBER HIGH BYTE (ADDRESS)
+00457  3220                        ; /2 = 1ST NUMBER LOW BYTE (ADDRESS)
+00458  3220                        ; /3 = 2ND NUMBER HIGH BYTE (VALUE)
+00459  3220                        ; /4 = 2ND NUMBER LOW BYTE (VALUE)
+00460  3220                        ; /5 = SUM HIGH BYTE (ADDRESS)
+00461  3220                        ; /6 = SUM LOW BYTE (ADDRESS)
+00462  3220                        SEC     ; SEC IS THE SAME AS CLEAR BORROW
+00463  3220                        LDA /2  ; GET LSB OF FIRST NUMBER
+00464  3220                        SBC #/4 ; SUBTRACT LSB OF SECOND NUMBER
+00465  3220                        STA /6  ; STORE IN LSB OF SUM
+00466  3220                        LDA /1  ; GET MSB OF FIRST NUMBER
+00467  3220                        SBC #/3 ; SUBTRACT BORROW AND MSB OF NUM2
+00468  3220                        STA /5  ; STORE SUM IN MSB OF SUM
+00469  3220                        ENDM
+00470  3220             
+00471  3220             ;===============================================================================
+00472  3220             ; CONSTANTS
+00473  3220             
+00474  3220             BLACK      = 0
+00475  3220             WHITE      = 1
+00476  3220             RED        = 2
+00477  3220             CYAN       = 3
+00478  3220             PURPLE     = 4
+00479  3220             GREEN      = 5
+00480  3220             BLUE       = 6
+00481  3220             YELLOW     = 7
+00482  3220             ORANGE     = 8
+00483  3220             BROWN      = 9
+00484  3220             LIGHTRED   = 10
+00485  3220             DARKGRAY   = 11
+00486  3220             MEDIUMGRAY = 12
+00487  3220             LIGHTGREEN = 13
+00488  3220             LIGHTBLUE  = 14
+00489  3220             LIGHTGRAY  = 15
+00490  3220             SPACECHARACTER = 32
+00491  3220             
+00492  3220             FALSE      = 0
+00493  3220             TRUE       = 1
+00494  3220             
+00495  3220             ;===============================================================================
+00496  3220             ; VARIABLES
+00497  3220             
+00498  3220             OPERATOR   CALC
+00499  3220             
+00500  3220             SCREENRAMROWSTARTLOW ;  SCREENRAM + 40*0, 40*1, 40*2 ... 40*24
+00501  3220  00 28 50              BYTE <SCREENRAM,     <SCREENRAM+40,  <SCREENRAM+80
+00502  3223  78 A0 C8              BYTE <SCREENRAM+120, <SCREENRAM+160, <SCREENRAM+200
+00503  3226  F0 18 40              BYTE <SCREENRAM+240, <SCREENRAM+280, <SCREENRAM+320
+00504  3229  68 90 B8              BYTE <SCREENRAM+360, <SCREENRAM+400, <SCREENRAM+440
+00505  322C  E0 08 30              BYTE <SCREENRAM+480, <SCREENRAM+520, <SCREENRAM+560
+00506  322F  58 80 A8              BYTE <SCREENRAM+600, <SCREENRAM+640, <SCREENRAM+680
+00507  3232  D0 F8 20              BYTE <SCREENRAM+720, <SCREENRAM+760, <SCREENRAM+800
+00508  3235  48 70 98              BYTE <SCREENRAM+840, <SCREENRAM+880, <SCREENRAM+920
+00509  3238  C0                    BYTE <SCREENRAM+960
+00510  3239             
+00511  3239             SCREENRAMROWSTARTHIGH ;  SCREENRAM + 40*0, 40*1, 40*2 ... 40*24
+00512  3239  04 04 04              BYTE >SCREENRAM,     >SCREENRAM+40,  >SCREENRAM+80
+00513  323C  04 04 04              BYTE >SCREENRAM+120, >SCREENRAM+160, >SCREENRAM+200
+00514  323F  04 05 05              BYTE >SCREENRAM+240, >SCREENRAM+280, >SCREENRAM+320
+00515  3242  05 05 05              BYTE >SCREENRAM+360, >SCREENRAM+400, >SCREENRAM+440
+00516  3245  05 06 06              BYTE >SCREENRAM+480, >SCREENRAM+520, >SCREENRAM+560
+00517  3248  06 06 06              BYTE >SCREENRAM+600, >SCREENRAM+640, >SCREENRAM+680
+00518  324B  06 06 07              BYTE >SCREENRAM+720, >SCREENRAM+760, >SCREENRAM+800
+00519  324E  07 07 07              BYTE >SCREENRAM+840, >SCREENRAM+880, >SCREENRAM+920
+00520  3251  07                    BYTE >SCREENRAM+960
+00521  3252             
+00522  3252             COLORRAMROWSTARTLOW ;  COLORRAM + 40*0, 40*1, 40*2 ... 40*24
+00523  3252  00 28 50              BYTE <COLORRAM,     <COLORRAM+40,  <COLORRAM+80
+00524  3255  78 A0 C8              BYTE <COLORRAM+120, <COLORRAM+160, <COLORRAM+200
+00525  3258  F0 18 40              BYTE <COLORRAM+240, <COLORRAM+280, <COLORRAM+320
+00526  325B  68 90 B8              BYTE <COLORRAM+360, <COLORRAM+400, <COLORRAM+440
+00527  325E  E0 08 30              BYTE <COLORRAM+480, <COLORRAM+520, <COLORRAM+560
+00528  3261  58 80 A8              BYTE <COLORRAM+600, <COLORRAM+640, <COLORRAM+680
+00529  3264  D0 F8 20              BYTE <COLORRAM+720, <COLORRAM+760, <COLORRAM+800
+00530  3267  48 70 98              BYTE <COLORRAM+840, <COLORRAM+880, <COLORRAM+920
+00531  326A  C0                    BYTE <COLORRAM+960
+00532  326B             
+00533  326B             COLORRAMROWSTARTHIGH ;  COLORRAM + 40*0, 40*1, 40*2 ... 40*24
+00534  326B  D8 D8 D8              BYTE >COLORRAM,     >COLORRAM+40,  >COLORRAM+80
+00535  326E  D8 D8 D8              BYTE >COLORRAM+120, >COLORRAM+160, >COLORRAM+200
+00536  3271  D8 D9 D9              BYTE >COLORRAM+240, >COLORRAM+280, >COLORRAM+320
+00537  3274  D9 D9 D9              BYTE >COLORRAM+360, >COLORRAM+400, >COLORRAM+440
+00538  3277  D9 DA DA              BYTE >COLORRAM+480, >COLORRAM+520, >COLORRAM+560
+00539  327A  DA DA DA              BYTE >COLORRAM+600, >COLORRAM+640, >COLORRAM+680
+00540  327D  DA DA DB              BYTE >COLORRAM+720, >COLORRAM+760, >COLORRAM+800
+00541  3280  DB DB DB              BYTE >COLORRAM+840, >COLORRAM+880, >COLORRAM+920
+00542  3283  DB                    BYTE >COLORRAM+960
+00543  3284             
+00544  3284             OPERATOR   HILO
+00545  3284             
+00546  3284  00         SCREENCOLUMN BYTE 0
+00547  3285  00         SCREENSCROLLXVALUE BYTE 0
+00548  3286             
+00549  3286             ;===============================================================================
+00550  3286             ; MACROS/SUBROUTINES
+00551  3286             
+00552  3286             DEFM       LIBSCREEN_DEBUG8BIT_VVA
+00553  3286                        ; /1 = X POSITION ABSOLUTE
+00554  3286                        ; /2 = Y POSITION ABSOLUTE
+00555  3286                        ; /3 = 1ST NUMBER LOW BYTE POINTER
+00556  3286                        
+00557  3286                        LDA #WHITE
+00558  3286                        STA $0286       ; SET TEXT COLOR
+00559  3286                        LDA #$20        ; SPACE
+00560  3286                        JSR $FFD2       ; PRINT 4 SPACES
+00561  3286                        JSR $FFD2
+00562  3286                        JSR $FFD2
+00563  3286                        JSR $FFD2
+00564  3286                        ;JSR $E566      ; RESET CURSOR
+00565  3286                        LDX #/2         ; SELECT ROW
+00566  3286                        LDY #/1         ; SELECT COLUMN
+00567  3286                        JSR $E50C       ; SET CURSOR
+00568  3286             
+00569  3286                        LDA #0
+00570  3286                        LDX /3
+00571  3286                        JSR $BDCD       ; PRINT NUMBER
+00572  3286                        ENDM
+00573  3286             
+00574  3286             ;===============================================================================
+00575  3286             
+00576  3286             DEFM       LIBSCREEN_DEBUG16BIT_VVAA
+00577  3286                        ; /1 = X POSITION ABSOLUTE
+00578  3286                        ; /2 = Y POSITION ABSOLUTE
+00579  3286                        ; /3 = 1ST NUMBER HIGH BYTE POINTER
+00580  3286                        ; /4 = 1ST NUMBER LOW BYTE POINTER
+00581  3286                        
+00582  3286                        LDA #WHITE
+00583  3286                        STA $0286       ; SET TEXT COLOR
+00584  3286                        LDA #$20        ; SPACE
+00585  3286                        JSR $FFD2       ; PRINT 4 SPACES
+00586  3286                        JSR $FFD2
+00587  3286                        JSR $FFD2
+00588  3286                        JSR $FFD2
+00589  3286                        ;JSR $E566      ; RESET CURSOR
+00590  3286                        LDX #/2         ; SELECT ROW
+00591  3286                        LDY #/1         ; SELECT COLUMN
+00592  3286                        JSR $E50C       ; SET CURSOR
+00593  3286             
+00594  3286                        LDA /3
+00595  3286                        LDX /4
+00596  3286                        JSR $BDCD       ; PRINT NUMBER
+00597  3286                        ENDM
+00598  3286             
+00599  3286             ;==============================================================================
+00600  3286             
+00601  3286             DEFM       LIBSCREEN_DRAWTEXT_AAAV ; /1 = X POSITION 0-39 (ADDRESS)
+00602  3286                        ; /2 = Y POSITION 0-24 (ADDRESS)
+00603  3286                        ; /3 = 0 TERMINATED STRING (ADDRESS)
+00604  3286                        ; /4 = TEXT COLOR (VALUE)
+00605  3286             
+00606  3286                        LDY /2 ; LOAD Y POSITION AS INDEX INTO LIST
+00607  3286                        
+00608  3286                        LDA SCREENRAMROWSTARTLOW,Y ; LOAD LOW ADDRESS BYTE
+00609  3286                        STA ZEROPAGELOW
+00610  3286             
+00611  3286                        LDA SCREENRAMROWSTARTHIGH,Y ; LOAD HIGH ADDRESS BYTE
+00612  3286                        STA ZEROPAGEHIGH
+00613  3286             
+00614  3286                        LDY /1 ; LOAD X POSITION INTO Y REGISTER
+00615  3286             
+00616  3286                        LDX #0
+00617  3286             @LOOP      LDA /3,X
+00618  3286                        CMP #0
+00619  3286                        BEQ @DONE
+00620  3286                        STA (ZEROPAGELOW),Y
+00621  3286                        INX
+00622  3286                        INY
+00623  3286                        JMP @LOOP
+00624  3286             @DONE
+00625  3286             
+00626  3286             
+00627  3286                        LDY /2 ; LOAD Y POSITION AS INDEX INTO LIST
+00628  3286                        
+00629  3286                        LDA COLORRAMROWSTARTLOW,Y ; LOAD LOW ADDRESS BYTE
+00630  3286                        STA ZEROPAGELOW
+00631  3286             
+00632  3286                        LDA COLORRAMROWSTARTHIGH,Y ; LOAD HIGH ADDRESS BYTE
+00633  3286                        STA ZEROPAGEHIGH
+00634  3286             
+00635  3286                        LDY /1 ; LOAD X POSITION INTO Y REGISTER
+00636  3286             
+00637  3286                        LDX #0
+00638  3286             @LOOP2     LDA /3,X
+00639  3286                        CMP #0
+00640  3286                        BEQ @DONE2
+00641  3286                        LDA #/4
+00642  3286                        STA (ZEROPAGELOW),Y
+00643  3286                        INX
+00644  3286                        INY
+00645  3286                        JMP @LOOP2
+00646  3286             @DONE2
+00647  3286             
+00648  3286                        ENDM
+00649  3286             
+00650  3286             ;===============================================================================
+00651  3286             
+00652  3286             DEFM       LIBSCREEN_DRAWDECIMAL_AAAV ; /1 = X POSITION 0-39 (ADDRESS)
+00653  3286                        ; /2 = Y POSITION 0-24 (ADDRESS)
+00654  3286                        ; /3 = DECIMAL NUMBER 2 NYBBLES (ADDRESS)
+00655  3286                        ; /4 = TEXT COLOR (VALUE)
+00656  3286             
+00657  3286                        LDY /2 ; LOAD Y POSITION AS INDEX INTO LIST
+00658  3286                        
+00659  3286                        LDA SCREENRAMROWSTARTLOW,Y ; LOAD LOW ADDRESS BYTE
+00660  3286                        STA ZEROPAGELOW
+00661  3286             
+00662  3286                        LDA SCREENRAMROWSTARTHIGH,Y ; LOAD HIGH ADDRESS BYTE
+00663  3286                        STA ZEROPAGEHIGH
+00664  3286             
+00665  3286                        LDY /1 ; LOAD X POSITION INTO Y REGISTER
+00666  3286             
+00667  3286                        ; GET HIGH NYBBLE
+00668  3286                        LDA /3
+00669  3286                        AND #$F0
+00670  3286                        
+00671  3286                        ; CONVERT TO ASCII
+00672  3286                        LSR
+00673  3286                        LSR
+00674  3286                        LSR
+00675  3286                        LSR
+00676  3286                        ORA #$30
+00677  3286             
+00678  3286                        STA (ZEROPAGELOW),Y
+00679  3286             
+00680  3286                        ; MOVE ALONG TO NEXT SCREEN POSITION
+00681  3286                        INY
+00682  3286             
+00683  3286                        ; GET LOW NYBBLE
+00684  3286                        LDA /3
+00685  3286                        AND #$0F
+00686  3286             
+00687  3286                        ; CONVERT TO ASCII
+00688  3286                        ORA #$30
+00689  3286             
+00690  3286                        STA (ZEROPAGELOW),Y
+00691  3286                        
+00692  3286             
+00693  3286                        ; NOW SET THE COLORS
+00694  3286                        LDY /2 ; LOAD Y POSITION AS INDEX INTO LIST
+00695  3286                        
+00696  3286                        LDA COLORRAMROWSTARTLOW,Y ; LOAD LOW ADDRESS BYTE
+00697  3286                        STA ZEROPAGELOW
+00698  3286             
+00699  3286                        LDA COLORRAMROWSTARTHIGH,Y ; LOAD HIGH ADDRESS BYTE
+00700  3286                        STA ZEROPAGEHIGH
+00701  3286             
+00702  3286                        LDY /1 ; LOAD X POSITION INTO Y REGISTER
+00703  3286             
+00704  3286                        LDA #/4
+00705  3286                        STA (ZEROPAGELOW),Y
+00706  3286             
+00707  3286                        ; MOVE ALONG TO NEXT SCREEN POSITION
+00708  3286                        INY
+00709  3286                        
+00710  3286                        STA (ZEROPAGELOW),Y
+00711  3286             
+00712  3286                        ENDM
+00713  3286             
+00714  3286             ;==============================================================================
+00715  3286             
+00716  3286             DEFM       LIBSCREEN_GETCHAR  ; /1 = RETURN CHARACTER CODE (ADDRESS)
+00717  3286                        LDA (ZEROPAGELOW),Y
+00718  3286                        STA /1
+00719  3286                        ENDM
+00720  3286             
+00721  3286             ;===============================================================================
+00722  3286             
+00723  3286             DEFM       LIBSCREEN_PIXELTOCHAR_AAVAVAAAA
+00724  3286                        ; /1 = XHIGHPIXELS      (ADDRESS)
+00725  3286                        ; /2 = XLOWPIXELS       (ADDRESS)
+00726  3286                        ; /3 = XADJUST          (VALUE)
+00727  3286                        ; /4 = YPIXELS          (ADDRESS)
+00728  3286                        ; /5 = YADJUST          (VALUE)
+00729  3286                        ; /6 = XCHAR            (ADDRESS)
+00730  3286                        ; /7 = XOFFSET          (ADDRESS)
+00731  3286                        ; /8 = YCHAR            (ADDRESS)
+00732  3286                        ; /9 = YOFFSET          (ADDRESS)
+00733  3286                        
+00734  3286             
+00735  3286                        LDA /1
+00736  3286                        STA ZEROPAGEPARAM1
+00737  3286                        LDA /2
+00738  3286                        STA ZEROPAGEPARAM2
+00739  3286                        LDA #/3
+00740  3286                        STA ZEROPAGEPARAM3
+00741  3286                        LDA /4
+00742  3286                        STA ZEROPAGEPARAM4
+00743  3286                        LDA #/5
+00744  3286                        STA ZEROPAGEPARAM5
+00745  3286                        
+00746  3286                        JSR LIBSCREEN_PIXELTOCHAR
+00747  3286             
+00748  3286                        LDA ZEROPAGEPARAM6
+00749  3286                        STA /6
+00750  3286                        LDA ZEROPAGEPARAM7
+00751  3286                        STA /7
+00752  3286                        LDA ZEROPAGEPARAM8
+00753  3286                        STA /8
+00754  3286                        LDA ZEROPAGEPARAM9
+00755  3286                        STA /9
+00756  3286             
+00757  3286                        ENDM
+00758  3286             
+00759  3286             LIBSCREEN_PIXELTOCHAR 
+00760  3286             
+00761  3286                        ; SUBTRACT XADJUST PIXELS FROM XPIXELS AS LEFT OF A SPRITE IS FIRST VISIBLE AT X = 24
+00762  3286             
+00763  3286             
+00764  3286  38                    SEC
+00765  3287  A5 74                 LDA ZEROPAGEPARAM2
+00766  3289  E5 75                 SBC ZEROPAGEPARAM3
+00767  328B  85 79                 STA ZEROPAGEPARAM7
+00768  328D  A5 73                 LDA ZEROPAGEPARAM1
+00769  328F  E9 00                 SBC #0
+00770  3291  85 78                 STA ZEROPAGEPARAM6
+00771  3293             
+00772  3293             
+00773  3293             
+00774  3293             
+00775  3293             
+00776  3293             
+00777  3293             
+00778  3293  A5 78                 LDA ZEROPAGEPARAM6
+00779  3295  85 02                 STA ZEROPAGETEMP
+00780  3297             
+00781  3297                        ; DIVIDE BY 8 TO GET CHARACTER X
+00782  3297  A5 79                 LDA ZEROPAGEPARAM7
+00783  3299  4A                    LSR A ; DIVIDE BY 2
+00784  329A  4A                    LSR A ; AND AGAIN = /4
+00785  329B  4A                    LSR A ; AND AGAIN = /8
+00786  329C  85 78                 STA ZEROPAGEPARAM6
+00787  329E             
+00788  329E                        ; AND 7 TO GET PIXEL OFFSET X
+00789  329E  A5 79                 LDA ZEROPAGEPARAM7
+00790  32A0  29 07                 AND #7
+00791  32A2  85 79                 STA ZEROPAGEPARAM7
+00792  32A4             
+00793  32A4                        ; ADJUST FOR XHIGH
+00794  32A4  A5 02                 LDA ZEROPAGETEMP
+00795  32A6  F0 07                 BEQ @NOTHIGH
+00796  32A8             
+00797  32A8             
+00798  32A8  18                    CLC
+00799  32A9  A5 78                 LDA ZEROPAGEPARAM6
+00800  32AB  69 20                 ADC #32
+00801  32AD  85 78                 STA ZEROPAGEPARAM6
+00802  32AF             
+00803  32AF             
+00804  32AF             
+00805  32AF             
+00806  32AF             @NOTHIGH
+00807  32AF                        ; SUBTRACT YADJUST PIXELS FROM YPIXELS AS TOP OF A SPRITE IS FIRST VISIBLE AT Y = 50
+00808  32AF             
+00809  32AF             
+00810  32AF  38                    SEC
+00811  32B0  A5 76                 LDA ZEROPAGEPARAM4
+00812  32B2  E5 77                 SBC ZEROPAGEPARAM5
+00813  32B4  85 7B                 STA ZEROPAGEPARAM9
+00814  32B6             
+00815  32B6             
+00816  32B6             
+00817  32B6             
+00818  32B6             
+00819  32B6                        ; DIVIDE BY 8 TO GET CHARACTER Y
+00820  32B6  A5 7B                 LDA ZEROPAGEPARAM9
+00821  32B8  4A                    LSR A ; DIVIDE BY 2
+00822  32B9  4A                    LSR A ; AND AGAIN = /4
+00823  32BA  4A                    LSR A ; AND AGAIN = /8
+00824  32BB  85 7A                 STA ZEROPAGEPARAM8
+00825  32BD             
+00826  32BD                        ; AND 7 TO GET PIXEL OFFSET Y
+00827  32BD  A5 7B                 LDA ZEROPAGEPARAM9
+00828  32BF  29 07                 AND #7
+00829  32C1  85 7B                 STA ZEROPAGEPARAM9
+00830  32C3             
+00831  32C3  60                    RTS
+00832  32C4             
+00833  32C4             ;==============================================================================
+00834  32C4             
+00835  32C4             DEFM       LIBSCREEN_SCROLLXLEFT_A          ; /1 = UPDATE SUBROUTINE (ADDRESS)
+00836  32C4             
+00837  32C4                        DEC SCREENSCROLLXVALUE
+00838  32C4                        LDA SCREENSCROLLXVALUE
+00839  32C4                        AND #%00000111
+00840  32C4                        STA SCREENSCROLLXVALUE
+00841  32C4             
+00842  32C4                        LDA SCROLX
+00843  32C4                        AND #%11111000
+00844  32C4                        ORA SCREENSCROLLXVALUE
+00845  32C4                        STA SCROLX
+00846  32C4             
+00847  32C4                        LDA SCREENSCROLLXVALUE
+00848  32C4                        CMP #7
+00849  32C4                        BNE @FINISHED
+00850  32C4             
+00851  32C4                        ; MOVE TO NEXT COLUMN
+00852  32C4                        INC SCREENCOLUMN
+00853  32C4                        JSR /1 ; CALL THE PASSED IN FUNCTION TO UPDATE THE SCREEN ROWS
+00854  32C4             @FINISHED
+00855  32C4             
+00856  32C4                        ENDM
+00857  32C4             
+00858  32C4             ;==============================================================================
+00859  32C4             
+00860  32C4             DEFM       LIBSCREEN_SCROLLXRIGHT_A         ; /1 = UPDATE SUBROUTINE (ADDRESS)
+00861  32C4             
+00862  32C4                        INC SCREENSCROLLXVALUE
+00863  32C4                        LDA SCREENSCROLLXVALUE
+00864  32C4                        AND #%00000111
+00865  32C4                        STA SCREENSCROLLXVALUE
+00866  32C4             
+00867  32C4                        LDA SCROLX
+00868  32C4                        AND #%11111000
+00869  32C4                        ORA SCREENSCROLLXVALUE
+00870  32C4                        STA SCROLX
+00871  32C4             
+00872  32C4                        LDA SCREENSCROLLXVALUE
+00873  32C4                        CMP #0
+00874  32C4                        BNE @FINISHED
+00875  32C4             
+00876  32C4                        ; MOVE TO PREVIOUS COLUMN
+00877  32C4                        DEC SCREENCOLUMN
+00878  32C4                        JSR /1 ; CALL THE PASSED IN FUNCTION TO UPDATE THE SCREEN ROWS
+00879  32C4             @FINISHED
+00880  32C4             
+00881  32C4                        ENDM
+00882  32C4             
+00883  32C4             ;==============================================================================
+00884  32C4             
+00885  32C4             DEFM       LIBSCREEN_SCROLLXRESET_A         ; /1 = UPDATE SUBROUTINE (ADDRESS)
+00886  32C4             
+00887  32C4                        LDA #0
+00888  32C4                        STA SCREENCOLUMN
+00889  32C4                        STA SCREENSCROLLXVALUE
+00890  32C4             
+00891  32C4                        LDA SCROLX
+00892  32C4                        AND #%11111000
+00893  32C4                        ORA SCREENSCROLLXVALUE
+00894  32C4                        STA SCROLX
+00895  32C4             
+00896  32C4                        JSR /1 ; CALL THE PASSED IN FUNCTION TO UPDATE THE SCREEN ROWS
+00897  32C4             
+00898  32C4                        ENDM
+00899  32C4             
+00900  32C4             ;==============================================================================
+00901  32C4             
+00902  32C4             DEFM       LIBSCREEN_SETSCROLLXVALUE_A     ; /1 = SCROLLX VALUE (ADDRESS)
+00903  32C4             
+00904  32C4                        LDA SCROLX
+00905  32C4                        AND #%11111000
+00906  32C4                        ORA /1
+00907  32C4                        STA SCROLX
+00908  32C4             
+00909  32C4                        ENDM
+00910  32C4             
+00911  32C4             ;==============================================================================
+00912  32C4             
+00913  32C4             DEFM       LIBSCREEN_SETSCROLLXVALUE_V     ; /1 = SCROLLX VALUE (VALUE)
+00914  32C4             
+00915  32C4                        LDA SCROLX
+00916  32C4                        AND #%11111000
+00917  32C4                        ORA #/1
+00918  32C4                        STA SCROLX
+00919  32C4             
+00920  32C4                        ENDM
+00921  32C4             
+00922  32C4             ;==============================================================================
+00923  32C4             
+00924  32C4             ; SETS 1000 BYTES OF MEMORY FROM START ADDRESS WITH A VALUE
+00925  32C4             DEFM       LIBSCREEN_SET1000       ; /1 = START  (ADDRESS)
+00926  32C4                        ; /2 = NUMBER (VALUE)
+00927  32C4             
+00928  32C4                        LDA #/2                 ; GET NUMBER TO SET
+00929  32C4                        LDX #250                ; SET LOOP VALUE
+00930  32C4             @LOOP      DEX                     ; STEP -1
+00931  32C4                        STA /1,X                ; SET START + X
+00932  32C4                        STA /1+250,X            ; SET START + 250 + X
+00933  32C4                        STA /1+500,X            ; SET START + 500 + X
+00934  32C4                        STA /1+750,X            ; SET START + 750 + X
+00935  32C4                        BNE @LOOP               ; IF X<>0 LOOP
+00936  32C4             
+00937  32C4                        ENDM
+00938  32C4             
+00939  32C4             ;==============================================================================
+00940  32C4             
+00941  32C4             DEFM       LIBSCREEN_SET38COLUMNMODE
+00942  32C4             
+00943  32C4                        LDA SCROLX
+00944  32C4                        AND #%11110111 ; CLEAR BIT 3
+00945  32C4                        STA SCROLX
+00946  32C4             
+00947  32C4                        ENDM
+00948  32C4             
+00949  32C4             ;==============================================================================
+00950  32C4             
+00951  32C4             DEFM       LIBSCREEN_SET40COLUMNMODE
+00952  32C4             
+00953  32C4                        LDA SCROLX
+00954  32C4                        ORA #%00001000 ; SET BIT 3
+00955  32C4                        STA SCROLX
+00956  32C4             
+00957  32C4                        ENDM
+00958  32C4             
+00959  32C4             ;==============================================================================
+00960  32C4             
+00961  32C4             DEFM       LIBSCREEN_SETCHARMEMORY  ; /1 = CHARACTER MEMORY SLOT (VALUE)
+00962  32C4                        ; POINT VIC (LOWER 4 BITS OF $D018)TO NEW CHARACTER DATA
+00963  32C4                        LDA VMCSB
+00964  32C4                        AND #%11110000 ; KEEP HIGHER 4 BITS
+00965  32C4                        ; P208 M JONG BOOK
+00966  32C4                        ORA #/1;$0E ; MAPS TO  $3800 MEMORY ADDRESS
+00967  32C4                        STA VMCSB
+00968  32C4                        ENDM
+00969  32C4             
+00970  32C4             ;==============================================================================
+00971  32C4             
+00972  32C4             DEFM       LIBSCREEN_SETCHAR_V  ; /1 = CHARACTER CODE (VALUE)
+00973  32C4                        LDA #/1
+00974  32C4                        STA (ZEROPAGELOW),Y
+00975  32C4                        ENDM
+00976  32C4             
+00977  32C4             ;==============================================================================
+00978  32C4             
+00979  32C4             DEFM       LIBSCREEN_SETCHAR_A  ; /1 = CHARACTER CODE (ADDRESS)
+00980  32C4                        LDA /1
+00981  32C4                        STA (ZEROPAGELOW),Y
+00982  32C4                        ENDM
+00983  32C4             
+00984  32C4             ;==============================================================================
+00985  32C4             
+00986  32C4             DEFM       LIBSCREEN_SETCHARPOSITION_AA    ; /1 = X POSITION 0-39 (ADDRESS)
+00987  32C4                        ; /2 = Y POSITION 0-24 (ADDRESS)
+00988  32C4                        
+00989  32C4                        LDY /2 ; LOAD Y POSITION AS INDEX INTO LIST
+00990  32C4                        
+00991  32C4                        LDA SCREENRAMROWSTARTLOW,Y ; LOAD LOW ADDRESS BYTE
+00992  32C4                        STA ZEROPAGELOW
+00993  32C4             
+00994  32C4                        LDA SCREENRAMROWSTARTHIGH,Y ; LOAD HIGH ADDRESS BYTE
+00995  32C4                        STA ZEROPAGEHIGH
+00996  32C4             
+00997  32C4                        LDY /1 ; LOAD X POSITION INTO Y REGISTER
+00998  32C4             
+00999  32C4                        ENDM
+01000  32C4             
+01001  32C4             ;==============================================================================
+01002  32C4             
+01003  32C4             DEFM       LIBSCREEN_SETCOLORPOSITION_AA   ; /1 = X POSITION 0-39 (ADDRESS)
+01004  32C4                        ; /2 = Y POSITION 0-24 (ADDRESS)
+01005  32C4                        
+01006  32C4                        LDY /2 ; LOAD Y POSITION AS INDEX INTO LIST
+01007  32C4                        
+01008  32C4                        LDA COLORRAMROWSTARTLOW,Y ; LOAD LOW ADDRESS BYTE
+01009  32C4                        STA ZEROPAGELOW
+01010  32C4             
+01011  32C4                        LDA COLORRAMROWSTARTHIGH,Y ; LOAD HIGH ADDRESS BYTE
+01012  32C4                        STA ZEROPAGEHIGH
+01013  32C4             
+01014  32C4                        LDY /1 ; LOAD X POSITION INTO Y REGISTER
+01015  32C4             
+01016  32C4                        ENDM
+01017  32C4             
+01018  32C4             ;===============================================================================
+01019  32C4             
+01020  32C4             ; SETS THE BORDER AND BACKGROUND COLORS
+01021  32C4             DEFM       LIBSCREEN_SETCOLORS     ; /1 = BORDER COLOR       (VALUE)
+01022  32C4                        ; /2 = BACKGROUND COLOR 0 (VALUE)
+01023  32C4                        ; /3 = BACKGROUND COLOR 1 (VALUE)
+01024  32C4                        ; /4 = BACKGROUND COLOR 2 (VALUE)
+01025  32C4                        ; /5 = BACKGROUND COLOR 3 (VALUE)
+01026  32C4                        
+01027  32C4                        LDA #/1                 ; COLOR0 -> A
+01028  32C4                        STA EXTCOL              ; A -> EXTCOL
+01029  32C4                        LDA #/2                 ; COLOR1 -> A
+01030  32C4                        STA BGCOL0              ; A -> BGCOL0
+01031  32C4                        LDA #/3                 ; COLOR2 -> A
+01032  32C4                        STA BGCOL1              ; A -> BGCOL1
+01033  32C4                        LDA #/4                 ; COLOR3 -> A
+01034  32C4                        STA BGCOL2              ; A -> BGCOL2
+01035  32C4                        LDA #/5                 ; COLOR4 -> A
+01036  32C4                        STA BGCOL3              ; A -> BGCOL3
+01037  32C4             
+01038  32C4                        ENDM
+01039  32C4             
+01040  32C4             ;==============================================================================
+01041  32C4             
+01042  32C4             DEFM       LIBSCREEN_SETMULTICOLORMODE
+01043  32C4             
+01044  32C4                        LDA SCROLX
+01045  32C4                        ORA #%00010000 ; SET BIT 5
+01046  32C4                        STA SCROLX
+01047  32C4             
+01048  32C4                        ENDM
+01049  32C4             
+01050  32C4             ;===============================================================================
+01051  32C4             
+01052  32C4             ; WAITS FOR A GIVEN SCANLINE
+01053  32C4             DEFM       LIBSCREEN_WAIT_V        ; /1 = SCANLINE (VALUE)
+01054  32C4             
+01055  32C4             @LOOP      LDA #/1                 ; SCANLINE -> A
+01056  32C4                        CMP RASTER              ; COMPARE A TO CURRENT RASTER LINE
+01057  32C4                        BNE @LOOP               ; LOOP IF RASTER LINE NOT REACHED 255
+01058  32C4             
+01059  32C4                        ENDM
+01060  32C4             
+01061  32C4             
+01062  32C4             
+01063  32C4             ;===============================================================================
+01064  32C4             ; CONSTANTS
+01065  32C4             
+01066  32C4             SPRITEANIMSMAX = 8
+01067  32C4             
+01068  32C4             ;===============================================================================
+01069  32C4             ; VARIABLES
+01070  32C4             
+01071  32C4  00 00 00   SPRITEANIMSACTIVE DCB SPRITEANIMSMAX, 0
+01072  32CC  00 00 00   SPRITEANIMSSTARTFRAME DCB SPRITEANIMSMAX, 0
+01073  32D4  00 00 00   SPRITEANIMSFRAME DCB SPRITEANIMSMAX, 0
+01074  32DC  00 00 00   SPRITEANIMSENDFRAME DCB SPRITEANIMSMAX, 0
+01075  32E4  00 00 00   SPRITEANIMSSTOPFRAME DCB SPRITEANIMSMAX, 0
+01076  32EC  00 00 00   SPRITEANIMSSPEED DCB SPRITEANIMSMAX, 0
+01077  32F4  00 00 00   SPRITEANIMSDELAY DCB SPRITEANIMSMAX, 0
+01078  32FC  00 00 00   SPRITEANIMSLOOP DCB SPRITEANIMSMAX, 0
+01079  3304             
+01080  3304  00         SPRITEANIMSCURRENT BYTE 0
+01081  3305  00         SPRITEANIMSFRAMECURRENT BYTE 0
+01082  3306  00         SPRITEANIMSENDFRAMECURRENT BYTE 0
+01083  3307             
+01084  3307  01 02 04   SPRITENUMBERMASK BYTE %00000001, %00000010, %00000100, %00001000,                                     %00010000, %00100000, %01000000, %10000000
+01085  330F             
+01086  330F             ;===============================================================================
+01087  330F             ; MACROS/SUBROUTINES
+01088  330F             
+01089  330F             
+01090  330F             DEFM       LIBSPRITE_DIDCOLLIDEWITHSPRITE_A  ; /1 = SPRITE NUMBER (ADDRESS)
+01091  330F                        
+01092  330F                        LDY /1
+01093  330F                        LDA SPRITENUMBERMASK,Y
+01094  330F                        AND SPSPCL
+01095  330F                        
+01096  330F                        ENDM
+01097  330F             
+01098  330F             ;===============================================================================
+01099  330F             
+01100  330F             DEFM       LIBSPRITE_ENABLE_AV                ; /1 = SPRITE NUMBER (ADDRESS)
+01101  330F                        ; /2 = ENABLE/DISABLE (VALUE)
+01102  330F                        LDY /1
+01103  330F                        LDA SPRITENUMBERMASK,Y
+01104  330F                        
+01105  330F                        LDY #/2
+01106  330F                        BEQ @DISABLE
+01107  330F             @ENABLE
+01108  330F                        ORA SPENA ; MERGE WITH THE CURRENT SPRITEENABLE REGISTER
+01109  330F                        STA SPENA ; SET THE NEW VALUE INTO THE SPRITEENABLE REGISTER
+01110  330F                        JMP @DONE
+01111  330F             @DISABLE
+01112  330F                        EOR #$FF ; GET MASK COMPLIMENT
+01113  330F                        AND SPENA
+01114  330F                        STA SPENA
+01115  330F             @DONE
+01116  330F                        ENDM
+01117  330F             
+01118  330F             ;==============================================================================
+01119  330F             
+01120  330F             DEFM       LIBSPRITE_ISANIMPLAYING_A      ; /1 = SPRITE NUMBER    (ADDRESS)
+01121  330F             
+01122  330F                        LDY /1
+01123  330F                        LDA SPRITEANIMSACTIVE,Y
+01124  330F             
+01125  330F                        ENDM
+01126  330F             
+01127  330F             ;===============================================================================
+01128  330F             
+01129  330F             DEFM       LIBSPRITE_MULTICOLORENABLE_AA    ; /1 = SPRITE NUMBER (ADDRESS)
+01130  330F                        ; /2 = ENABLE/DISABLE (ADDRESS)
+01131  330F                        LDY /1
+01132  330F                        LDA SPRITENUMBERMASK,Y
+01133  330F                        
+01134  330F                        LDY /2
+01135  330F                        BEQ @DISABLE
+01136  330F             @ENABLE
+01137  330F                        ORA SPMC
+01138  330F                        STA SPMC
+01139  330F                        JMP @DONE
+01140  330F             @DISABLE
+01141  330F                        EOR #$FF ; GET MASK COMPLIMENT
+01142  330F                        AND SPMC
+01143  330F                        STA SPMC
+01144  330F             @DONE
+01145  330F                        ENDM
+01146  330F             
+01147  330F             ;===============================================================================
+01148  330F             
+01149  330F             DEFM       LIBSPRITE_MULTICOLORENABLE_AV   ; /1 = SPRITE NUMBER (ADDRESS)
+01150  330F                        ; /2 = ENABLE/DISABLE (VALUE)
+01151  330F                        LDY /1
+01152  330F                        LDA SPRITENUMBERMASK,Y
+01153  330F                        
+01154  330F                        LDY #/2
+01155  330F                        BEQ @DISABLE
+01156  330F             @ENABLE
+01157  330F                        ORA SPMC
+01158  330F                        STA SPMC
+01159  330F                        JMP @DONE
+01160  330F             @DISABLE
+01161  330F                        EOR #$FF ; GET MASK COMPLIMENT
+01162  330F                        AND SPMC
+01163  330F                        STA SPMC
+01164  330F             @DONE
+01165  330F                        ENDM
+01166  330F             
+01167  330F             ;==============================================================================
+01168  330F             
+01169  330F             DEFM       LIBSPRITE_PLAYANIM_AVVVV        ; /1 = SPRITE NUMBER    (ADDRESS)
+01170  330F                        ; /2 = STARTFRAME       (VALUE)
+01171  330F                        ; /3 = ENDFRAME         (VALUE)
+01172  330F                        ; /4 = SPEED            (VALUE)
+01173  330F                        ; /5 = LOOP TRUE/FALSE  (VALUE)
+01174  330F             
+01175  330F                        LDY /1
+01176  330F             
+01177  330F                        LDA #TRUE
+01178  330F                        STA SPRITEANIMSACTIVE,Y
+01179  330F                        LDA #/2
+01180  330F                        STA SPRITEANIMSSTARTFRAME,Y
+01181  330F                        STA SPRITEANIMSFRAME,Y
+01182  330F                        LDA #/3
+01183  330F                        STA SPRITEANIMSENDFRAME,Y
+01184  330F                        LDA #/4
+01185  330F                        STA SPRITEANIMSSPEED,Y
+01186  330F                        STA SPRITEANIMSDELAY,Y
+01187  330F                        LDA #/5
+01188  330F                        STA SPRITEANIMSLOOP,Y
+01189  330F             
+01190  330F                        ENDM
+01191  330F             
+01192  330F             ;===============================================================================
+01193  330F             
+01194  330F             DEFM       LIBSPRITE_SETCOLOR_AV           ; /1 = SPRITE NUMBER    (ADDRESS)
+01195  330F                        ; /2 = COLOR            (VALUE)
+01196  330F                        LDY /1
+01197  330F                        LDA #/2
+01198  330F                        STA SP0COL,Y
+01199  330F                        ENDM
+01200  330F             
+01201  330F             ;===============================================================================
+01202  330F             
+01203  330F             DEFM       LIBSPRITE_SETCOLOR_AA           ; /1 = SPRITE NUMBER    (ADDRESS)
+01204  330F                        ; /2 = COLOR            (ADDRESS)
+01205  330F                        LDY /1
+01206  330F                        LDA /2
+01207  330F                        STA SP0COL,Y
+01208  330F                        ENDM
+01209  330F             
+01210  330F             ;==============================================================================
+01211  330F             
+01212  330F             DEFM       LIBSPRITE_SETFRAME_AA           ; /1 = SPRITE NUMBER    (ADDRESS)
+01213  330F                        ; /2 = ANIM INDEX       (ADDRESS)
+01214  330F                        LDY /1
+01215  330F                        
+01216  330F                        CLC     ; CLEAR CARRY BEFORE ADD
+01217  330F                        LDA /2  ; GET FIRST NUMBER
+01218  330F                        ADC #SPRITERAM ; ADD
+01219  330F                        
+01220  330F                        STA SPRITE0,Y
+01221  330F                        ENDM
+01222  330F             
+01223  330F             ;===============================================================================
+01224  330F             
+01225  330F             DEFM       LIBSPRITE_SETFRAME_AV           ; /1 = SPRITE NUMBER    (ADDRESS)
+01226  330F                        ; /2 = ANIM INDEX       (VALUE)
+01227  330F                        LDY /1
+01228  330F                        
+01229  330F                        CLC     ; CLEAR CARRY BEFORE ADD
+01230  330F                        LDA #/2  ; GET FIRST NUMBER
+01231  330F                        ADC #SPRITERAM ; ADD
+01232  330F                        
+01233  330F                        STA SPRITE0,Y
+01234  330F                        ENDM
+01235  330F             
+01236  330F             ;===============================================================================
+01237  330F             
+01238  330F             DEFM       LIBSPRITE_SETMULTICOLORS_VV     ; /1 = COLOR 1          (VALUE)
+01239  330F                        ; /2 = COLOR 2          (VALUE)
+01240  330F                        LDA #/1
+01241  330F                        STA SPMC0
+01242  330F                        LDA #/2
+01243  330F                        STA SPMC1
+01244  330F                        ENDM
+01245  330F             
+01246  330F             ;===============================================================================
+01247  330F             
+01248  330F             DEFM       LIBSPRITE_SETPOSITION_AAAA      ; /1 = SPRITE NUMBER    (ADDRESS)
+01249  330F                        ; /2 = XPOS HIGH BYTE   (ADDRESS)
+01250  330F                        ; /3 = XPOS LOW BYTE    (ADDRESS)
+01251  330F                        ; /4 = YPOS             (ADDRESS)
+01252  330F             
+01253  330F                        LDA /1                  ; GET SPRITE NUMBER
+01254  330F                        ASL                     ; *2 AS REGISTERS LAID OUT 2 APART
+01255  330F                        TAY                     ; COPY ACCUMULATOR TO Y REGISTER
+01256  330F             
+01257  330F                        LDA /3                  ; GET XPOS LOW BYTE
+01258  330F                        STA SP0X,Y              ; SET THE XPOS SPRITE REGISTER
+01259  330F                        LDA /4                  ; GET YPOS
+01260  330F                        STA SP0Y,Y              ; SET THE YPOS SPRITE REGISTER
+01261  330F                        
+01262  330F                        LDY /1
+01263  330F                        LDA SPRITENUMBERMASK,Y  ; GET SPRITE MASK
+01264  330F                        
+01265  330F                        EOR #$FF                ; GET COMPLIMENT
+01266  330F                        AND MSIGX               ; CLEAR THE BIT
+01267  330F                        STA MSIGX               ; AND STORE
+01268  330F             
+01269  330F                        LDY /2                  ; GET XPOS HIGH BYTE
+01270  330F                        BEQ @END                ; SKIP IF XPOS HIGH BYTE IS ZERO
+01271  330F                        LDY /1
+01272  330F                        LDA SPRITENUMBERMASK,Y  ; GET SPRITE MASK
+01273  330F                        
+01274  330F                        ORA MSIGX               ; SET THE BIT
+01275  330F                        STA MSIGX               ; AND STORE
+01276  330F             @END
+01277  330F                        ENDM
+01278  330F             
+01279  330F             ;===============================================================================
+01280  330F             
+01281  330F             DEFM       LIBSPRITE_SETPOSITION_VAAA      ; /1 = SPRITE NUMBER    (VALUE)
+01282  330F                        ; /2 = XPOS HIGH BYTE   (ADDRESS)
+01283  330F                        ; /3 = XPOS LOW BYTE    (ADDRESS)
+01284  330F                        ; /4 = YPOS             (ADDRESS)
+01285  330F             
+01286  330F                        LDY #/1*2               ; *2 AS REGISTERS LAID OUT 2 APART
+01287  330F                        LDA /3                  ; GET XPOS LOW BYTE
+01288  330F                        STA SP0X,Y              ; SET THE XPOS SPRITE REGISTER
+01289  330F                        LDA /4                  ; GET YPOS
+01290  330F                        STA SP0Y,Y              ; SET THE YPOS SPRITE REGISTER
+01291  330F                        
+01292  330F                        LDA #1<<#/1             ; SHIFT 1 INTO SPRITE BIT POSITION
+01293  330F                        EOR #$FF                ; GET COMPLIMENT
+01294  330F                        AND MSIGX               ; CLEAR THE BIT
+01295  330F                        STA MSIGX               ; AND STORE
+01296  330F             
+01297  330F                        LDY /2                  ; GET XPOS HIGH BYTE
+01298  330F                        BEQ @END                ; SKIP IF XPOS HIGH BYTE IS ZERO
+01299  330F                        LDA #1<<#/1             ; SHIFT 1 INTO SPRITE BIT POSITION
+01300  330F                        ORA MSIGX               ; SET THE BIT
+01301  330F                        STA MSIGX               ; AND STORE
+01302  330F             @END
+01303  330F                        ENDM
+01304  330F             
+01305  330F             
+01306  330F             ;===============================================================================
+01307  330F             
+01308  330F             DEFM       LIBSPRITE_SETPRIORITY_AV ; /1 = SPRITE NUMBER           (ADDRESS)
+01309  330F                        ; /2 = TRUE = BACK, FALSE = FRONT (VALUE)
+01310  330F                        LDY /1
+01311  330F                        LDA SPRITENUMBERMASK,Y
+01312  330F                        
+01313  330F                        LDY #/2
+01314  330F                        BEQ @DISABLE
+01315  330F             @ENABLE
+01316  330F                        ORA SPBGPR ; MERGE WITH THE CURRENT SPBGPR REGISTER
+01317  330F                        STA SPBGPR ; SET THE NEW VALUE INTO THE SPBGPR REGISTER
+01318  330F                        JMP @DONE
+01319  330F             @DISABLE
+01320  330F                        EOR #$FF ; GET MASK COMPLIMENT
+01321  330F                        AND SPBGPR
+01322  330F                        STA SPBGPR
+01323  330F             @DONE
+01324  330F                        ENDM
+01325  330F             
+01326  330F             ;==============================================================================
+01327  330F             
+01328  330F             DEFM       LIBSPRITE_STOPANIM_A            ; /1 = SPRITE NUMBER    (ADDRESS)
+01329  330F             
+01330  330F                        LDY /1
+01331  330F                        LDA #0
+01332  330F                        STA SPRITEANIMSACTIVE,Y
+01333  330F             
+01334  330F                        ENDM
+01335  330F             
+01336  330F             ;==============================================================================
+01337  330F             
+01338  330F             LIBSPRITESUPDATE 
+01339  330F             
+01340  330F  A2 00                 LDX #0
+01341  3311             LSOULOOP
+01342  3311                        ; SKIP THIS SPRITE ANIM IF NOT ACTIVE
+01343  3311  BD C4 32              LDA SPRITEANIMSACTIVE,X
+01344  3314  D0 03                 BNE LSOUACTIVE
+01345  3316  4C 78 33              JMP LSOUSKIP
+01346  3319             LSOUACTIVE 
+01347  3319             
+01348  3319  8E 04 33              STX SPRITEANIMSCURRENT
+01349  331C  BD D4 32              LDA SPRITEANIMSFRAME,X
+01350  331F  8D 05 33              STA SPRITEANIMSFRAMECURRENT
+01351  3322             
+01352  3322  BD DC 32              LDA SPRITEANIMSENDFRAME,X
+01353  3325  8D 06 33              STA SPRITEANIMSENDFRAMECURRENT
+01354  3328                        
+01355  3328             
+01356  3328             
+01357  3328  AC 04 33              LDY SPRITEANIMSCURRENT
+01358  332B                        
+01359  332B  18                    CLC
+01360  332C  AD 05 33              LDA SPRITEANIMSFRAMECURRENT
+01361  332F  69 C0                 ADC #SPRITERAM
+01362  3331                        
+01363  3331  99 F8 07              STA SPRITE0,Y
+01364  3334             
+01365  3334             
+01366  3334  DE F4 32              DEC SPRITEANIMSDELAY,X
+01367  3337  D0 3F                 BNE LSOUSKIP
+01368  3339             
+01369  3339                        ; RESET THE DELAY
+01370  3339  BD EC 32              LDA SPRITEANIMSSPEED,X
+01371  333C  9D F4 32              STA SPRITEANIMSDELAY,X
+01372  333F             
+01373  333F                        ; CHANGE THE FRAME
+01374  333F  FE D4 32              INC SPRITEANIMSFRAME,X
+01375  3342                        
+01376  3342                        ; CHECK IF REACHED THE END FRAME
+01377  3342  AD 06 33              LDA SPRITEANIMSENDFRAMECURRENT
+01378  3345  DD D4 32              CMP SPRITEANIMSFRAME,X
+01379  3348  B0 2E                 BCS LSOUSKIP
+01380  334A             
+01381  334A                        ; CHECK IF LOOPING
+01382  334A  BD FC 32              LDA SPRITEANIMSLOOP,X
+01383  334D  F0 09                 BEQ LSOUDESTROY
+01384  334F             
+01385  334F                        ; RESET THE FRAME
+01386  334F  BD CC 32              LDA SPRITEANIMSSTARTFRAME,X
+01387  3352  9D D4 32              STA SPRITEANIMSFRAME,X
+01388  3355  4C 78 33              JMP LSOUSKIP
+01389  3358             
+01390  3358             LSOUDESTROY 
+01391  3358                        ; TURN OFF
+01392  3358  A9 00                 LDA #FALSE
+01393  335A  9D C4 32              STA SPRITEANIMSACTIVE,X
+01394  335D             
+01395  335D             
+01396  335D  AC 04 33              LDY SPRITEANIMSCURRENT
+01397  3360  B9 07 33              LDA SPRITENUMBERMASK,Y
+01398  3363                        
+01399  3363  A0 00                 LDY #FALSE
+01400  3365  F0 09                 BEQ @DISABLE
+01401  3367             @ENABLE
+01402  3367  0D 15 D0              ORA SPENA
+01403  336A  8D 15 D0              STA SPENA
+01404  336D  4C 78 33              JMP @DONE
+01405  3370             @DISABLE
+01406  3370  49 FF                 EOR #$FF
+01407  3372  2D 15 D0              AND SPENA
+01408  3375  8D 15 D0              STA SPENA
+01409  3378             @DONE
+01410  3378             
+01411  3378             
+01412  3378             LSOUSKIP
+01413  3378                        ; LOOP FOR EACH SPRITE ANIM
+01414  3378  E8                    INX
+01415  3379  E0 08                 CPX #SPRITEANIMSMAX
+01416  337B                        ;BNE LSULOOP
+01417  337B  F0 03                 BEQ LSOUFINISHED
+01418  337D  4C 11 33              JMP LSOULOOP
+01419  3380             LSOUFINISHED 
+01420  3380             
+01421  3380  60                    RTS
+01422  3381             
+01423  3381             ;LOAD SPRITES
+01424  3381             ;////////////////////////////
+01425  3381             ;LOAD SPRITE INTO MEM LOCATION
+01426  3381             *          = $2000
+01427  2000             @          
+01428  2000  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01429  2008  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01430  2010  00 00 00              BYTE $00,$00,$00,$3C,$00,$00,$FF,$00
+01431  2018  01 FF 80              BYTE $01,$FF,$80,$03,$9C,$C0,$03,$08
+01432  2020  40 03 29              BYTE $40,$03,$29,$40,$07,$29,$60,$07
+01433  2028  9C E0 07              BYTE $9C,$E0,$07,$FF,$E0,$07,$FF,$E0
+01434  2030  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$BD
+01435  2038  C0 03 18              BYTE $C0,$03,$18,$C0,$00,$00,$00,$00
+01436  2040  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01437  2048  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01438  2050  00 00 00              BYTE $00,$00,$00,$3C,$00,$00,$FF,$00
+01439  2058  01 FF 80              BYTE $01,$FF,$80,$03,$9C,$C0,$03,$08
+01440  2060  40 03 29              BYTE $40,$03,$29,$40,$07,$29,$60,$07
+01441  2068  9C E0 07              BYTE $9C,$E0,$07,$FF,$E0,$07,$FF,$E0
+01442  2070  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$BD
+01443  2078  C0 03 18              BYTE $C0,$03,$18,$C0,$00,$00,$00,$00
+01444  2080  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01445  2088  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$07
+01446  2090  F0 00 0F              BYTE $F0,$00,$0F,$FE,$00,$0F,$FF,$00
+01447  2098  07 E3 80              BYTE $07,$E3,$80,$03,$C1,$80,$07,$D9
+01448  20A0  C0 0F E3              BYTE $C0,$0F,$E3,$C0,$0F,$FF,$C0,$07
+01449  20A8  E3 C0 03              BYTE $E3,$C0,$03,$C1,$80,$07,$D9,$80
+01450  20B0  0F E3 00              BYTE $0F,$E3,$00,$0F,$FE,$00,$03,$F0
+01451  20B8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01452  20C0  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01453  20C8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$07
+01454  20D0  F0 00 0F              BYTE $F0,$00,$0F,$FE,$00,$0F,$FF,$00
+01455  20D8  07 E3 80              BYTE $07,$E3,$80,$03,$C1,$80,$07,$D9
+01456  20E0  C0 0F E3              BYTE $C0,$0F,$E3,$C0,$0F,$FF,$C0,$07
+01457  20E8  E3 C0 03              BYTE $E3,$C0,$03,$C1,$80,$07,$D9,$80
+01458  20F0  0F E3 00              BYTE $0F,$E3,$00,$0F,$FE,$00,$03,$F0
+01459  20F8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01460  2100  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01461  2108  00 00 00              BYTE $00,$00,$00,$00,$03,$18,$C0,$03
+01462  2110  BD E0 07              BYTE $BD,$E0,$07,$FF,$E0,$07,$FF,$E0
+01463  2118  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$39
+01464  2120  E0 06 94              BYTE $E0,$06,$94,$E0,$02,$94,$C0,$02
+01465  2128  10 C0 03              BYTE $10,$C0,$03,$39,$C0,$01,$FF,$80
+01466  2130  00 FF 00              BYTE $00,$FF,$00,$00,$3C,$00,$00,$00
+01467  2138  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01468  2140  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01469  2148  00 00 00              BYTE $00,$00,$00,$00,$03,$18,$C0,$03
+01470  2150  BD E0 07              BYTE $BD,$E0,$07,$FF,$E0,$07,$FF,$E0
+01471  2158  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$39
+01472  2160  E0 06 94              BYTE $E0,$06,$94,$E0,$02,$94,$C0,$02
+01473  2168  10 C0 03              BYTE $10,$C0,$03,$39,$C0,$01,$FF,$80
+01474  2170  00 FF 00              BYTE $00,$FF,$00,$00,$3C,$00,$00,$00
+01475  2178  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01476  2180  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01477  2188  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01478  2190  0F C0 00              BYTE $0F,$C0,$00,$7F,$F0,$00,$C7,$F0
+01479  2198  01 9B E0              BYTE $01,$9B,$E0,$01,$83,$C0,$03,$C7
+01480  21A0  E0 03 FF              BYTE $E0,$03,$FF,$F0,$03,$C7,$F0,$03
+01481  21A8  9B E0 01              BYTE $9B,$E0,$01,$83,$C0,$01,$C7,$E0
+01482  21B0  00 FF F0              BYTE $00,$FF,$F0,$00,$7F,$F0,$00,$0F
+01483  21B8  E0 00 00              BYTE $E0,$00,$00,$00,$00,$00,$00,$00
+01484  21C0  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01485  21C8  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+01486  21D0  0F C0 00              BYTE $0F,$C0,$00,$7F,$F0,$00,$C7,$F0
+01487  21D8  01 9B E0              BYTE $01,$9B,$E0,$01,$83,$C0,$03,$C7
+01488  21E0  E0 03 FF              BYTE $E0,$03,$FF,$F0,$03,$C7,$F0,$03
+01489  21E8  9B E0 01              BYTE $9B,$E0,$01,$83,$C0,$01,$C7,$E0
+01490  21F0  00 FF F0              BYTE $00,$FF,$F0,$00,$7F,$F0,$00,$0F
+01491  21F8  E0 00 00              BYTE $E0,$00,$00,$00,$00,$00,$00,$00
+01492  2200             
+01493  2200             @          
+01494  2200                        INCBIN "GHOST.SPT",1,8,TRUE
+01495  2200             
+01496  2200             ;////////////////////////////
+01497  2200             ;MATH UTILS FUNCTIONS
+01498  2200             ASSIGNRANDOMVALUEINTOLDA 
+01499  2200  AD 1B D4              LDA $D41B
+01500  2203  60                    RTS;
+01501  2204             ;////////////////////////////
+01502  2204             
+01503  2204             ;////////////////////////////
+01504  2204             ;UTIL FUNCTIONS
+01505  2204             
+01506  2204             BORDER     = $D020
+01507  2204             SCREEN     = $D021
+01508  2204             
+01509  2204             RANDOMBGCOLOUR 
+01510  2204  EE 21 D0              INC SCREEN ; INCREASE SCREEN COLOUR
+01511  2207  EE 20 D0              INC BORDER ; INCREASE BORDER COLOUR
+01512  220A  60                    RTS
+01513  220B             
+01514  220B             RENDER_HELLO_WORLD 
+01515  220B  BD 4B 22              LDA HELLO_WORLD,X
+01516  220E  9D 10 04              STA $410,X
+01517  2211             
+01518  2211  E8                    INX
+01519  2212  E0 0B                 CPX #11
+01520  2214  D0 F5                 BNE RENDER_HELLO_WORLD    ; LOOP IF WE ARE NOT DONE YET
+01521  2216  60                    RTS
+01522  2217             
+01523  2217             RENDER_SCORE_TEXT 
+01524  2217  BD 58 22              LDA SCORE_TEXT,X
+01525  221A  9D 05 04              STA $405,X
+01526  221D             
+01527  221D  E8                    INX
+01528  221E  E0 07                 CPX #7
+01529  2220  D0 F5                 BNE RENDER_SCORE_TEXT    ; LOOP IF WE ARE NOT DONE YET
+01530  2222  60                    RTS
+01531  2223             
+01532  2223             RENDER_SCORE 
+01533  2223  BD 11 08              LDA SCORE,X
+01534  2226  69 30                 ADC #$30 ;ADD 30 TO GET ITS SCREEN CODE. HACKY. NEED PROPER WAY TO CONVERT FROM INT TO SCREEN VALUE.
+01535  2228  9D 10 04              STA $410,X
+01536  222B             
+01537  222B  E8                    INX
+01538  222C  E0 01                 CPX #1
+01539  222E  D0 F3                 BNE RENDER_SCORE
+01540  2230  60                    RTS
+01541  2231             
+01542  2231             FRAME_COUNT = 8                               ; CONSTANT FOR THE NBR OF SPRITE FRAMES YOU HAVE
+01543  2231             FRAME_COUNTER = $8011           ; VARIABLE TO KEEP TRACK OF HOW FAR THROUGH THE ANIMATION WE ARE
+01544  2231             DATAPOINTER = 128               ; SPRITE DATA WILL BE READ BY VIC-II AT 128*64 ($2000)
+01545  2231             
+01546  2231             RENDERENEMYANIM 
+01547  2231  CE 11 80              DEC FRAME_COUNTER                      ;  FRAME_COUNTER VARIABLE -= 1
+01548  2234  D0 0B                 BNE INCREMENT_SPRITE_POINTER           ; IF FRAME_COUNTER > 0, GOTO .INCREMENT_SPRITE_POINTER...
+01549  2236                        
+01550  2236  A9 80                 LDA #DATAPOINTER        ; ... OTHERWISE, WE SHOULD RESET TO THE START OF THE ANIMATION
+01551  2238  8D F9 07              STA $07F9                               ; RESET THE SPRITE POINTER TO START OF SPRITE DATA
+01552  223B  A2 08                 LDX #FRAME_COUNT
+01553  223D  8E 11 80              STX FRAME_COUNTER
+01554  2240  60                    RTS
+01555  2241                        ; RETURN
+01556  2241             INCREMENT_SPRITE_POINTER 
+01557  2241  EE F9 07              INC $07F9                               ; SPRITE POINTER += 1 (MOVES TO THE NEXT FRAME)
+01558  2244  60                    RTS
+01559  2245             
+01560  2245             INIT_SPRITES 
+01561  2245  A9 08                 LDA #FRAME_COUNT
+01562  2247  8D 11 80              STA FRAME_COUNTER
+01563  224A  60                    RTS
+01564  224B             
+01565  224B             ;////////////////////////////
+01566  224B             HELLO_WORLD 
+01567  224B  08 05 0C              TEXT 'HELLO WORLD'
+01568  2256  0D 00                 BYTE 13,00
+01569  2258             
+01570  2258             SCORE_TEXT 
+01571  2258  13 03 0F              TEXT 'SCORE: '
+01572  225F  07 00                 BYTE 7,00
+01573  2261             ;////////////////////////////
+01574  2261             
+01575  2261             ;STARTING POINT OF THE PROGRAM
+01576  2261             ;SYS20645
+01577  2261             
+01578  2261             *=$0801    
+01579  0801  0C 08 0A              BYTE $0C,$08,$0A,$00,$9E,$32,$30,$36,$34,$00,$00,$00,$00
+01580  080E             *=$0810    
+01581  0810             
+01582  0810             GET        = $FFE4 ;INPUT CONTROL
+01583  0810             SPACE      = $20 ;KEY VALUE
+01584  0810             W_KEY      = $57 ;KEY VALUE
+01585  0810             E_KEY      = $45 ;KEY VALUE
+01586  0810             T_KEY      = $54 ;KEY VALUE
+01587  0810             S_KEY      = $53 ;KEY VALUE
+01588  0810             A_KEY      = $41 ;KEY VALUE
+01589  0810             D_KEY      = $44 ;KEY VALUE
+01590  0810             NUM_1_KEY  = $31 ;KEY VALUE
+01591  0810             
+01592  0810             POSX       = $D000
+01593  0810             POSY       = $D001
+01594  0810             
+01595  0810             POS1X      = $D002
+01596  0810             POS1Y      = $D003
+01597  0810             
+01598  0810             SPRITE1COLOR = $D027
+01599  0810             SPRITE2COLOR = $D028
+01600  0810             
+01601  0810             SPRITEDATALOCATION = #$80
+01602  0810             SPRITE1DATALOCATION = #$80
+01603  0810             
+01604  0810             
+01605  0810             MOVEMENT_AMOUNT = #$5
+01606  0810             PRINT_LINE = $AB1E ;BASIC FUNCTION
+01607  0810             CLEAR      = $E544 ;BASIC FUNCTION
+01608  0810             
+01609  0810             SCORE      = $0811
+01610  0810             
+01611  0810             LEFTBIT    = $0812
+01612  0810             
+01613  0810             
+01614  0810             MSBX       = $D010
+01615  0810             ENABLE     = $D015
+01616  0810             COLLISION_FLAG = $D01E ;COLLSION FLAG
+01617  0810             
+01618  0810             MAIN
+01619  0810  4C FD 08              JMP LOAD
+01620  0813  4C 16 08              JMP GAMELOOP
+01621  0816                        
+01622  0816             GAMELOOP   
+01623  0816  20 E4 FF              JSR GET
+01624  0819  C9 57                 CMP #W_KEY ; CHECK THE W KEY FOR INPUT
+01625  081B  F0 56                 BEQ UP
+01626  081D                        
+01627  081D  C9 53                 CMP #S_KEY ; CHECK THE S KEY FOR INPUT
+01628  081F  F0 5E                 BEQ DOWN
+01629  0821             
+01630  0821  20 C3 08              JSR CHECKLEFT
+01631  0824             
+01632  0824  C9 44                 CMP #D_KEY ; CHECK THE D KEY FOR INPUT
+01633  0826  F0 7B                 BEQ RIGHT
+01634  0828             
+01635  0828  C9 31                 CMP #NUM_1_KEY ; CHECK THE 1 KEY FOR INPUT
+01636  082A  F0 3E                 BEQ QUIT
+01637  082C             
+01638  082C  20 4B 08              JSR COLLISION
+01639  082F  20 44 E5              JSR CLEAR
+01640  0832  A2 00                 LDX #$00
+01641  0834  20 40 08              JSR RENDERTEXT
+01642  0837  20 31 22              JSR RENDERENEMYANIM
+01643  083A  20 BB 08              JSR MOVEMENT
+01644  083D  4C 16 08              JMP GAMELOOP
+01645  0840             
+01646  0840             RENDERTEXT 
+01647  0840  A2 00                 LDX #$00
+01648  0842  20 17 22              JSR RENDER_SCORE_TEXT
+01649  0845             
+01650  0845  A2 00                 LDX #$00
+01651  0847  20 23 22              JSR RENDER_SCORE
+01652  084A  60                    RTS
+01653  084B             
+01654  084B             COLLISION
+01655  084B             ;IF COLLISION
+01656  084B  AC 1E D0              LDY COLLISION_FLAG
+01657  084E  C0 03                 CPY #%00000011            ;CHECK TO SEE IF THERE HAS BEEN A COLLISION BETWEEN SPRITE 1 AND 2
+01658  0850  F0 01                 BEQ COLLISIONBETWEENSPRITE1AND2
+01659  0852             ;ELSE
+01660  0852  60                    RTS
+01661  0853             
+01662  0853             COLLISIONBETWEENSPRITE1AND2 
+01663  0853  20 00 22              JSR ASSIGNRANDOMVALUEINTOLDA
+01664  0856  8D 02 D0              STA POS1X
+01665  0859  20 00 22              JSR ASSIGNRANDOMVALUEINTOLDA
+01666  085C  8D 03 D0              STA POS1Y
+01667  085F  20 63 08              JSR INCREASE_SCORE
+01668  0862  60                    RTS
+01669  0863             
+01670  0863             INCREASE_SCORE 
+01671  0863  AE 11 08              LDX SCORE
+01672  0866  EE 11 08              INC SCORE
+01673  0869  60                    RTS
+01674  086A             
+01675  086A             QUIT       ;QUIT OUT OF THE PROGRAM (CLEAN UP)
+01676  086A  20 44 E5              JSR CLEAR
+01677  086D  A9 00                 LDA #0
+01678  086F  8D 15 D0              STA ENABLE
+01679  0872  60                    RTS
+01680  0873                        
+01681  0873             UP         
+01682  0873  AD 01 D0              LDA POSY
+01683  0876  38                    SEC
+01684  0877  E9 05                 SBC MOVEMENT_AMOUNT
+01685  0879  8D 01 D0              STA POSY
+01686  087C  4C 16 08              JMP GAMELOOP
+01687  087F             
+01688  087F             DOWN       
+01689  087F  AD 01 D0              LDA POSY
+01690  0882  18                    CLC
+01691  0883  69 05                 ADC MOVEMENT_AMOUNT
+01692  0885  8D 01 D0              STA POSY
+01693  0888  4C 16 08              JMP GAMELOOP
+01694  088B             
+01695  088B             LEFT       
+01696  088B  AD 00 D0              LDA POSX
+01697  088E  38                    SEC
+01698  088F  E9 05                 SBC MOVEMENT_AMOUNT
+01699  0891  8D 00 D0              STA POSX
+01700  0894             
+01701  0894  AE 00 D0              LDX POSX
+01702  0897  E0 FF                 CPX #255
+01703  0899  D0 42                 BNE OVERFLOW_CHECK
+01704  089B             
+01705  089B  A2 00                 LDX #0
+01706  089D  8E 10 D0              STX MSBX
+01707  08A0  4C 16 08              JMP GAMELOOP
+01708  08A3             
+01709  08A3             RIGHT      
+01710  08A3  AD 00 D0              LDA POSX
+01711  08A6  18                    CLC
+01712  08A7  69 05                 ADC MOVEMENT_AMOUNT
+01713  08A9  8D 00 D0              STA POSX
+01714  08AC             
+01715  08AC  AE 00 D0              LDX POSX
+01716  08AF  E0 FF                 CPX #255
+01717  08B1  D0 2A                 BNE OVERFLOW_CHECK
+01718  08B3             
+01719  08B3  A9 01                 LDA #1
+01720  08B5  8D 10 D0              STA MSBX
+01721  08B8  4C 16 08              JMP GAMELOOP
+01722  08BB                        
+01723  08BB             
+01724  08BB             
+01725  08BB             MOVEMENT
+01726  08BB  AD 12 08              LDA LEFTBIT
+01727  08BE  C5 01                 CMP 1
+01728  08C0  F0 C9                 BEQ LEFT
+01729  08C2  60                    RTS
+01730  08C3             
+01731  08C3             
+01732  08C3             CHECKLEFT
+01733  08C3  20 E4 FF              JSR $FFE4
+01734  08C6  C9 41                 CMP #A_KEY ; CHECK THE W KEY FOR INPUT
+01735  08C8  F0 04                 BEQ LEFTDOWN
+01736  08CA             
+01737  08CA  20 D4 08              JSR LEFTUP
+01738  08CD  60                    RTS
+01739  08CE             
+01740  08CE             LEFTDOWN
+01741  08CE  A5 01                 LDA 1
+01742  08D0  8D 12 08              STA LEFTBIT
+01743  08D3  60                    RTS
+01744  08D4             
+01745  08D4             LEFTUP
+01746  08D4  20 53 08              JSR COLLISIONBETWEENSPRITE1AND2
+01747  08D7  A5 00                 LDA 0
+01748  08D9  8D 12 08              STA LEFTBIT
+01749  08DC  60                    RTS
+01750  08DD             
+01751  08DD             
+01752  08DD             OVERFLOW_CHECK 
+01753  08DD  4C 16 08              JMP GAMELOOP
+01754  08E0  60                    RTS
+01755  08E1             
+01756  08E1             INITSIDCHIP 
+01757  08E1  A9 FF                 LDA #$FF  ; MAXIMUM FREQUENCY VALUE
+01758  08E3  8D 0E D4              STA $D40E ; VOICE 3 FREQUENCY LOW BYTE
+01759  08E6  8D 0F D4              STA $D40F ; VOICE 3 FREQUENCY HIGH BYTE
+01760  08E9  A9 80                 LDA #$80  ; NOISE WAVEFORM, GATE BIT OFF
+01761  08EB  8D 12 D4              STA $D412 ; VOICE 3 CONTROL REGISTER
+01762  08EE  60                    RTS
+01763  08EF             
+01764  08EF             POST_LOAD
+01765  08EF  A9 00                 LDA #0
+01766  08F1  8D 11 08              STA SCORE
+01767  08F4  20 E1 08              JSR INITSIDCHIP
+01768  08F7  20 45 22              JSR INIT_SPRITES
+01769  08FA  4C 16 08              JMP GAMELOOP
+01770  08FD             
+01771  08FD                        
+01772  08FD             LOAD
+01773  08FD  A9 80                 LDA SPRITEDATALOCATION ;POINTER TO THE SPRITE DATA
+01774  08FF  8D F8 07              STA $07F8
+01775  0902  A2 64                 LDX #100 ;XPOS
+01776  0904  A0 46                 LDY #70 ;YPOS
+01777  0906  8E 00 D0              STX POSX
+01778  0909  8C 01 D0              STY POSY
+01779  090C  A5 01                 LDA 1
+01780  090E  8D 27 D0              STA SPRITE1COLOR
+01781  0911             
+01782  0911             
+01783  0911  A9 80                 LDA SPRITE1DATALOCATION ;POINTER TO THE SPRITE DATA
+01784  0913  8D F9 07              STA $07F9
+01785  0916  A2 64                 LDX #100 ;XPOS
+01786  0918  A0 64                 LDY #100 ;YPOS
+01787  091A  8E 02 D0              STX POS1X
+01788  091D  8C 03 D0              STY POS1Y
+01789  0920  A5 03                 LDA 3
+01790  0922  8D 28 D0              STA SPRITE2COLOR
+01791  0925             
+01792  0925  A9 03                 LDA #$03
+01793  0927  8D 15 D0              STA $D015 ;SPRITE ENABLE FLAG 01 ONLY SPRITE ONE. 02 ONLY SPRITE 2. 03 SPRITE 1 AND 2
+01794  092A             
+01795  092A             
+01796  092A             
+01797  092A  4C EF 08              JMP POST_LOAD
+01798  092D             
+
+******* 64 Label(s) *******
+~~~disable{00004} = $3370 
+~~~done{00004} = $3378 
+~~~enable{00004} = $3367 
+AssignRandomValueIntoLDA = $2200 
+checkLeft = $08C3 
+COLLISION = $084B 
+CollisionBetweenSprite1and2 = $0853 
+ColorRAMRowStartHigh = $326B 
+ColorRAMRowStartLow = $3252 
+DOWN = $087F 
+fireBlip = $3204 
+fireDelay = $3203 
+GAMELOOP = $0816 
+gameportDiff = $3202 
+gameportLastFrame = $3200 
+gameportThisFrame = $3201 
+HELLO_WORLD = $224B 
+INCREASE_SCORE = $0863 
+increment_sprite_pointer = $2241 
+INIT_SPRITES = $2245 
+InitSIDChip = $08E1 
+LEFT = $088B 
+leftDown = $08CE 
+leftUp = $08D4 
+libInputUpdate = $3205 
+libScreen_PixelToChar = $3286 
+libSpritesUpdate = $330F 
+lIUDelayZero = $3219 
+LOAD = $08FD 
+lSoUActive = $3319 
+lSoUDestroy = $3358 
+lSoUFinished = $3380 
+lSoULoop = $3311 
+lSoUSkip = $3378 
+main = $0810 
+movement = $08BB 
+OVERFLOW_CHECK = $08DD 
+POST_LOAD = $08EF 
+QUIT = $086A 
+randomBGColour = $2204 
+RENDER_HELLO_WORLD = $220B 
+RENDER_SCORE = $2223 
+RENDER_SCORE_TEXT = $2217 
+RenderEnemyAnim = $2231 
+RenderText = $0840 
+RIGHT = $08A3 
+SCORE_TEXT = $2258 
+screenColumn = $3284 
+ScreenRAMRowStartHigh = $3239 
+ScreenRAMRowStartLow = $3220 
+screenScrollXValue = $3285 
+spriteAnimsActive = $32C4 
+spriteAnimsCurrent = $3304 
+spriteAnimsDelay = $32F4 
+spriteAnimsEndFrame = $32DC 
+spriteAnimsEndFrameCurrent = $3306 
+spriteAnimsFrame = $32D4 
+spriteAnimsFrameCurrent = $3305 
+spriteAnimsLoop = $32FC 
+spriteAnimsSpeed = $32EC 
+spriteAnimsStartFrame = $32CC 
+spriteAnimsStopFrame = $32E4 
+spriteNumberMask = $3307 
+UP = $0873 
+
+******* 16 Unused label(s) *******
+@nothigh
+~~~disable{00004}
+~~~done{00004}
+~~~enable{00004}
+ColorRAMRowStartHigh
+ColorRAMRowStartLow
+fireBlip
+libInputUpdate
+libScreen_PixelToChar
+libSpritesUpdate
+main
+randomBGColour
+screenColumn
+ScreenRAMRowStartHigh
+ScreenRAMRowStartLow
+screenScrollXValue
+spriteAnimsStopFrame
+
+******* 118 Variable(s) *******
+A_KEY  = $0041
+ATDCY1  = $D405
+ATDCY2  = $D40C
+ATDCY3  = $D413
+BGCOL0  = $D021
+BGCOL1  = $D022
+BGCOL2  = $D023
+BGCOL3  = $D024
+Black  = $0000
+Blue  = $0006
+BORDER  = $D020
+Brown  = $0009
+CIAPRA  = $DC00
+CIAPRB  = $DC01
+CLEAR  = $E544
+COLLISION_FLAG  = $D01E
+COLORRAM  = $D800
+Cyan  = $0003
+D_KEY  = $0044
+DarkGray  = $000B
+dataPointer  = $0080
+E_KEY  = $0045
+ENABLE  = $D015
+EXTCOL  = $D020
+False  = $0000
+FireDelayMax  = $001E
+frame_count  = $0008
+frame_counter  = $8011
+FREHI1  = $D401
+FREHI2  = $D408
+FREHI3  = $D40F
+FRELO1  = $D400
+FRELO2  = $D407
+FRELO3  = $D40E
+GameportDownMask  = $0002
+GameportFireMask  = $0010
+GameportLeftMask  = $0004
+GameportRightMask  = $0008
+GameportUpMask  = $0001
+get  = $FFE4
+Green  = $0005
+JoystickRegister  = $DC00
+leftBit  = $0812
+LightBlue  = $000E
+LightGray  = $000F
+LightGreen  = $000D
+LightRed  = $000A
+MediumGray  = $000C
+MOVEMENT_AMOUNT  = $0005
+MSBX  = $D010
+MSIGX  = $D010
+NUM_1_KEY  = $0031
+Orange  = $0008
+pos1X  = $D002
+pos1Y  = $D003
+posX  = $D000
+posY  = $D001
+PRINT_LINE  = $AB1E
+Purple  = $0004
+PWHI1  = $D403
+PWHI2  = $D40A
+PWHI3  = $D411
+PWLO1  = $D402
+PWLO2  = $D409
+PWLO3  = $D410
+RASTER  = $D012
+Red  = $0002
+S_KEY  = $0053
+score  = $0811
+SCREEN  = $D021
+SCREENRAM  = $0400
+SCROLX  = $D016
+SIGVOL  = $D418
+SP0COL  = $D027
+SP0X  = $D000
+SP0Y  = $D001
+SPACE  = $0020
+SpaceCharacter  = $0020
+SPBGPR  = $D01B
+SPENA  = $D015
+SPMC  = $D01C
+SPMC0  = $D025
+SPMC1  = $D026
+SPRITE0  = $07F8
+sprite1Color  = $D027
+sprite1DataLocation  = $0080
+sprite2Color  = $D028
+SpriteAnimsMax  = $0008
+spriteDataLocation  = $0080
+SPRITERAM  = $00C0
+SPSPCL  = $D01E
+SUREL1  = $D406
+SUREL2  = $D40D
+SUREL3  = $D414
+T_KEY  = $0054
+tgt_c64  = $0001
+True  = $0001
+VCREG1  = $D404
+VCREG2  = $D40B
+VCREG3  = $D412
+VMCSB  = $D018
+W_KEY  = $0057
+White  = $0001
+Yellow  = $0007
+ZeroPageHigh  = $00FC
+ZeroPageHigh2  = $00FE
+ZeroPageLow  = $00FB
+ZeroPageLow2  = $00FD
+ZeroPageParam1  = $0073
+ZeroPageParam2  = $0074
+ZeroPageParam3  = $0075
+ZeroPageParam4  = $0076
+ZeroPageParam5  = $0077
+ZeroPageParam6  = $0078
+ZeroPageParam7  = $0079
+ZeroPageParam8  = $007A
+ZeroPageParam9  = $007B
+ZeroPageTemp  = $0002
+******* 78 Unused variables(s) *******
+ATDCY1
+ATDCY2
+ATDCY3
+BGCOL0
+BGCOL1
+BGCOL2
+BGCOL3
+Black
+Blue
+Brown
+CIAPRA
+CIAPRB
+COLORRAM
+Cyan
+DarkGray
+E_KEY
+EXTCOL
+FireDelayMax
+FREHI1
+FREHI2
+FREHI3
+FRELO1
+FRELO2
+FRELO3
+GameportDownMask
+GameportFireMask
+GameportLeftMask
+GameportRightMask
+GameportUpMask
+Green
+LightBlue
+LightGray
+LightGreen
+LightRed
+MediumGray
+MSIGX
+Orange
+PRINT_LINE
+Purple
+PWHI1
+PWHI2
+PWHI3
+PWLO1
+PWLO2
+PWLO3
+RASTER
+Red
+SCREENRAM
+SCROLX
+SIGVOL
+SP0COL
+SP0X
+SP0Y
+SPACE
+SpaceCharacter
+SPBGPR
+SPENA
+SPMC
+SPMC0
+SPMC1
+SPRITE0
+SPRITERAM
+SPSPCL
+SUREL1
+SUREL2
+SUREL3
+T_KEY
+tgt_c64
+True
+VCREG1
+VCREG2
+VCREG3
+VMCSB
+White
+Yellow
+ZeroPageHigh
+ZeroPageHigh2
+ZeroPageLow
+ZeroPageLow2
+

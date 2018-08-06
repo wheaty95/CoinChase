@@ -1,0 +1,209 @@
+00001  0000             ;STARTING POINT OF THE PROGRAM
+00002  0001             ;SYS20645
+00003  0001             *=$0801    
+00004  0801  0C 08 0A              BYTE $0C,$08,$0A,$00,$9E,$32,$30,$36,$34,$00,$00,$00,$00
+00005  080E             *=$0810    
+00006  0810             
+00007  0810             GET        = $FFE4 ;INPUT CONTROL
+00008  0810             SPACE      = $20 ;KEY VALUE
+00009  0810             W_KEY      = $57 ;KEY VALUE
+00010  0810             E_KEY      = $45 ;KEY VALUE
+00011  0810             T_KEY      = $54 ;KEY VALUE
+00012  0810             S_KEY      = $53 ;KEY VALUE
+00013  0810             A_KEY      = $41 ;KEY VALUE
+00014  0810             D_KEY      = $44 ;KEY VALUE
+00015  0810             NUM_1_KEY  = $31 ;KEY VALUE
+00016  0810             
+00017  0810             POSX       = $D000
+00018  0810             POSY       = $D001
+00019  0810             SPRITE1COLOR = $D027
+00020  0810             MOVEMENT_AMOUNT = #$10
+00021  0810             PRINT_LINE = $AB1E ;BASIC FUNCTION
+00022  0810             CLEAR      = $E544 ;BASIC FUNCTION
+00023  0810             
+00024  0810             
+00025  0810             MSBX       = $D010
+00026  0810             ENABLE     = $D015
+00027  0810             
+00028  0810             MAIN
+00029  0810  4C 81 08              JMP LOAD
+00030  0813  4C 16 08              JMP GAMELOOP
+00031  0816             
+00032  0816             GAMELOOP
+00033  0816  20 E4 FF              JSR GET
+00034  0819  C9 57                 CMP #W_KEY ; CHECK THE W KEY FOR INPUT
+00035  081B  F0 1F                 BEQ UP
+00036  081D  C9 53                 CMP #S_KEY ; CHECK THE S KEY FOR INPUT
+00037  081F  F0 27                 BEQ DOWN
+00038  0821  C9 41                 CMP #A_KEY ; CHECK THE S KEY FOR INPUT
+00039  0823  F0 2F                 BEQ LEFT
+00040  0825  C9 44                 CMP #D_KEY ; CHECK THE S KEY FOR INPUT
+00041  0827  F0 40                 BEQ RIGHT
+00042  0829             
+00043  0829  C9 31                 CMP #NUM_1_KEY ; CHECK THE S KEY FOR INPUT
+00044  082B  F0 06                 BEQ QUIT
+00045  082D             
+00046  082D  20 44 E5              JSR CLEAR
+00047  0830  4C 16 08              JMP GAMELOOP
+00048  0833                        
+00049  0833             QUIT       ;QUIT OUT OF THE PROGRAM (CLEAN UP)
+00050  0833  20 44 E5              JSR CLEAR
+00051  0836  A9 00                 LDA #0
+00052  0838  8D 15 D0              STA ENABLE
+00053  083B  60                    RTS
+00054  083C                        
+00055  083C                        
+00056  083C             UP         
+00057  083C  AD 01 D0              LDA POSY
+00058  083F  38                    SEC
+00059  0840  E9 10                 SBC MOVEMENT_AMOUNT
+00060  0842  8D 01 D0              STA POSY
+00061  0845  4C 16 08              JMP GAMELOOP
+00062  0848             
+00063  0848             DOWN       
+00064  0848  AD 01 D0              LDA POSY
+00065  084B  18                    CLC
+00066  084C  69 10                 ADC MOVEMENT_AMOUNT
+00067  084E  8D 01 D0              STA POSY
+00068  0851  4C 16 08              JMP GAMELOOP
+00069  0854                        
+00070  0854             LEFT       
+00071  0854  AD 00 D0              LDA POSX
+00072  0857  38                    SEC
+00073  0858  E9 10                 SBC MOVEMENT_AMOUNT
+00074  085A  8D 00 D0              STA POSX
+00075  085D  E0 FF                 CPX #255
+00076  085F  D0 B5                 BNE GAMELOOP
+00077  0861  A9 00                 LDA #0
+00078  0863  8D 10 D0              STA MSBX
+00079  0866  4C 16 08              JMP GAMELOOP
+00080  0869             
+00081  0869             RIGHT      
+00082  0869  AD 00 D0              LDA POSX
+00083  086C  18                    CLC
+00084  086D  69 10                 ADC MOVEMENT_AMOUNT
+00085  086F  8D 00 D0              STA POSX
+00086  0872  E0 FF                 CPX #255
+00087  0874  D0 A0                 BNE GAMELOOP
+00088  0876  A9 01                 LDA #1
+00089  0878  8D 10 D0              STA MSBX
+00090  087B  4C 16 08              JMP GAMELOOP
+00091  087E                        
+00092  087E             POST_LOAD
+00093  087E             ;START GAMELOOP
+00094  087E  4C 16 08              JMP GAMELOOP
+00095  0881             
+00096  0881                        
+00097  0881             LOAD
+00098  0881             
+00099  0881             
+00100  0881  A9 80                 LDA #$80 ;POINTER TO THE SPRITE DATA
+00101  0883  8D F8 07              STA $07F8
+00102  0886  A9 01                 LDA #$01
+00103  0888  8D 15 D0              STA $D015
+00104  088B  A2 64                 LDX #100 ;XPOS
+00105  088D  A0 46                 LDY #70 ;YPOS
+00106  088F  8E 00 D0              STX POSX
+00107  0892  8C 01 D0              STY POSY
+00108  0895  A5 01                 LDA 1
+00109  0897  8D 27 D0              STA SPRITE1COLOR
+00110  089A  4C 7E 08              JMP POST_LOAD
+00111  089D             
+00112  089D             
+00113  089D             ;LOAD SPRITES
+00114  089D             ;////////////////////////////
+00115  089D             ;LOAD SPRITE INTO MEM LOCATION
+00116  089D             *          = $2000
+00117  2000             @          
+00118  2000  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00119  2008  00 00 00              BYTE $00,$00,$00,$00,$00,$00,$00,$00
+00120  2010  00 00 00              BYTE $00,$00,$00,$3C,$00,$00,$FF,$00
+00121  2018  01 FF 80              BYTE $01,$FF,$80,$03,$9C,$C0,$03,$08
+00122  2020  40 03 29              BYTE $40,$03,$29,$40,$07,$29,$60,$07
+00123  2028  9C E0 07              BYTE $9C,$E0,$07,$FF,$E0,$07,$FF,$E0
+00124  2030  07 FF E0              BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$BD
+00125  2038  C0 03 18              BYTE $C0,$03,$18,$C0,$00,$00,$00
+00126  203F             
+00127  203F             @          
+00128  203F                        INCBIN "GHOST.SPT",1,1
+00129  203F             ;////////////////////////////
+00130  203F             
+00131  203F             
+00132  203F             
+00133  203F             ;////////////////////////////
+00134  203F             ;UTIL FUNCTIONS
+00135  203F             
+00136  203F             
+00137  203F             BORDER     = $D020
+00138  203F             SCREEN     = $D021
+00139  203F             
+00140  203F             RANDOMBGCOLOUR 
+00141  203F  EE 21 D0              INC SCREEN ; INCREASE SCREEN COLOUR
+00142  2042  EE 20 D0              INC BORDER ; INCREASE BORDER COLOUR
+00143  2045  4C 10 08              JMP MAIN
+00144  2048                        
+00145  2048             
+00146  2048             PRINTHELLOWORLD 
+00147  2048  A9 4F                 LDA #<HELLO_WORLD         ;STRING ADDRESS LEAST SIGNIFICANT BYTE (LSB)
+00148  204A  A0 20                 LDY #>HELLO_WORLD        ;STRING ADDRESS MOST SIGNIFICANT BYTE (MSB)
+00149  204C  20 1E AB              JSR PRINT_LINE
+00150  204F             
+00151  204F             HELLO_WORLD 
+00152  204F  48 45 4C              TEXT "HELLO WORLD"
+00153  205A  0D 00                 BYTE 13,00
+00154  205C             ;////////////////////////////
+00155  205C             
+00156  205C             
+00157  205C             
+00158  205C             
+00159  205C             
+00160  205C             *=$0801    
+00161  0801  0C 08 0A              BYTE $0C,$08,$0A,$00,$9E,$32,$30,$36,$34,$00,$00,$00,$00
+00162  080E             *=$0810
+00163  0810             
+
+******* 12 Label(s) *******
+DOWN = $0848 
+GAMELOOP = $0816 
+HELLO_WORLD = $204F 
+LEFT = $0854 
+LOAD = $0881 
+main = $0810 
+POST_LOAD = $087E 
+printHelloWorld = $2048 
+QUIT = $0833 
+randomBGColour = $203F 
+RIGHT = $0869 
+UP = $083C 
+
+******* 2 Unused label(s) *******
+printHelloWorld
+randomBGColour
+
+******* 20 Variable(s) *******
+A_KEY  = $0041
+BORDER  = $D020
+CLEAR  = $E544
+D_KEY  = $0044
+E_KEY  = $0045
+ENABLE  = $D015
+get  = $FFE4
+MOVEMENT_AMOUNT  = $0010
+MSBX  = $D010
+NUM_1_KEY  = $0031
+posX  = $D000
+posY  = $D001
+PRINT_LINE  = $AB1E
+S_KEY  = $0053
+SCREEN  = $D021
+SPACE  = $0020
+sprite1Color  = $D027
+T_KEY  = $0054
+tgt_c64  = $0001
+W_KEY  = $0057
+******* 4 Unused variables(s) *******
+E_KEY
+SPACE
+T_KEY
+tgt_c64
+

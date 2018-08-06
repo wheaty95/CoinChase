@@ -1,0 +1,1677 @@
+##{0:0:0:gameMemory.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\gameMemory.asm
+
+;===============================================================================
+; $00-$FF  PAGE ZERO (256 bytes)
+ 
+                ; $00-$01   Reserved for IO
+ZeroPageTemp    = $02
+                ; $03-$8F   Reserved for BASIC
+                ; using $73-$8A CHRGET as BASIC not used for our game
+ZeroPageParam1  = $73
+ZeroPageParam2  = $74
+ZeroPageParam3  = $75
+ZeroPageParam4  = $76
+ZeroPageParam5  = $77
+ZeroPageParam6  = $78
+ZeroPageParam7  = $79
+ZeroPageParam8  = $7A
+ZeroPageParam9  = $7B
+                ; $90-$FA   Reserved for Kernal
+ZeroPageLow     = $FB
+ZeroPageHigh    = $FC
+ZeroPageLow2    = $FD
+ZeroPageHigh2   = $FE
+                ; $FF       Reserved for Kernal
+
+;===============================================================================
+; $0100-$01FF  STACK (256 bytes)
+
+
+;===============================================================================
+; $0200-$9FFF  RAM (40K)
+
+SCREENRAM       = $0400
+SPRITE0         = $07F8
+SPRITE1         = $07F9
+
+; $0801
+; Game code is placed here by using the *=$0801 directive 
+; in gameMain.asm 
+
+
+; 192 decimal * 64(sprite size) = 12288(hex $3000)
+SPRITERAM       = 192
+* = $3000
+IGNOREBLOCKSTART##
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$00,$00,$3C,$00,$00,$FF,$00
+ BYTE $01,$FF,$80,$03,$9C,$C0,$03,$08
+ BYTE $40,$03,$29,$40,$07,$29,$60,$07
+ BYTE $9C,$E0,$07,$FF,$E0,$07,$FF,$E0
+ BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$BD
+ BYTE $C0,$03,$18,$C0,$00,$00,$00,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$07
+ BYTE $F0,$00,$0F,$FE,$00,$0F,$FF,$00
+ BYTE $07,$E3,$80,$03,$C1,$80,$07,$D9
+ BYTE $C0,$0F,$E3,$C0,$0F,$FF,$C0,$07
+ BYTE $E3,$C0,$03,$C1,$80,$07,$D9,$80
+ BYTE $0F,$E3,$00,$0F,$FE,$00,$03,$F0
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$00,$00,$00,$03,$18,$C0,$03
+ BYTE $BD,$E0,$07,$FF,$E0,$07,$FF,$E0
+ BYTE $07,$FF,$E0,$07,$FF,$E0,$07,$39
+ BYTE $E0,$06,$94,$E0,$02,$94,$C0,$02
+ BYTE $10,$C0,$03,$39,$C0,$01,$FF,$80
+ BYTE $00,$FF,$00,$00,$3C,$00,$00,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $00,$00,$00,$00,$00,$00,$00,$00
+ BYTE $0F,$C0,$00,$7F,$F0,$00,$C7,$F0
+ BYTE $01,$9B,$E0,$01,$83,$C0,$03,$C7
+ BYTE $E0,$03,$FF,$F0,$03,$C7,$F0,$03
+ BYTE $9B,$E0,$01,$83,$C0,$01,$C7,$E0
+ BYTE $00,$FF,$F0,$00,$7F,$F0,$00,$0F
+ BYTE $E0,$00,$00,$00,$00,$00,$00,$00
+
+IGNOREBLOCKEND##
+        incbin Ghost.spt,1,4,true
+
+;===============================================================================
+; $A000-$BFFF  BASIC ROM (8K)
+
+
+;===============================================================================
+; $C000-$CFFF  RAM (4K)
+
+
+;===============================================================================
+; $D000-$DFFF  IO (4K)
+
+; These are some of the C64 registers that are mapped into
+; IO memory space
+; Names taken from 'Mapping the Commodore 64' book
+
+SP0X            = $D000
+SP0Y            = $D001
+SP1X            = $D002
+SP1Y            = $D003
+MSIGX           = $D010
+RASTER          = $D012
+SPENA           = $D015
+SCROLX          = $D016
+VMCSB           = $D018
+SPBGPR          = $D01B
+SPMC            = $D01C
+SPSPCL          = $D01E
+EXTCOL          = $D020
+BGCOL0          = $D021
+BGCOL1          = $D022
+BGCOL2          = $D023
+BGCOL3          = $D024
+SPMC0           = $D025
+SPMC1           = $D026
+SP0COL          = $D027
+FRELO1          = $D400 ;(54272)
+FREHI1          = $D401 ;(54273)
+PWLO1           = $D402 ;(54274)
+PWHI1           = $D403 ;(54275)
+VCREG1          = $D404 ;(54276)
+ATDCY1          = $D405 ;(54277)
+SUREL1          = $D406 ;(54278)
+FRELO2          = $D407 ;(54279)
+FREHI2          = $D408 ;(54280)
+PWLO2           = $D409 ;(54281)
+PWHI2           = $D40A ;(54282)
+VCREG2          = $D40B ;(54283)
+ATDCY2          = $D40C ;(54284)
+SUREL2          = $D40D ;(54285)
+FRELO3          = $D40E ;(54286)
+FREHI3          = $D40F ;(54287)
+PWLO3           = $D410 ;(54288)
+PWHI3           = $D411 ;(54289)
+VCREG3          = $D412 ;(54290)
+ATDCY3          = $D413 ;(54291)
+SUREL3          = $D414 ;(54292)
+SIGVOL          = $D418 ;(54296)      
+COLORRAM        = $D800
+CIAPRA          = $DC00
+CIAPRB          = $DC01
+
+;===============================================================================
+; $E000-$FFFF  KERNAL ROM (8K) 
+
+
+;===============================================================================
+
+##{0:0:0:gameMenu.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\gameMenu.asm
+
+flowStartX      byte 9
+flowStartY      byte 20
+
+descX      byte 7
+descY      byte 21
+
+flowStartText
+      text 'PRESS FIRE TO START!'
+                        byte 0
+
+descText
+      text 'A GAME BY ELLIOTT WHEAT'
+                        byte 0
+
+MENU_LOOP
+        ; Wait for scanline 255
+        LIBSCREEN_WAIT_V 255
+        jsr libInputUpdate
+      
+        LIBSCREEN_DRAWTEXT_AAAV flowStartX, flowStartY, flowStartText, White
+        
+        LIBSCREEN_DRAWTEXT_AAAV descX, descY, descText, White
+
+        LIBINPUT_GETHELD GameportFireMask
+        beq MENU_END
+        jmp MENU_LOOP
+        
+
+MENU_START
+        jsr CLEAR
+        LIBSPRITE_ENABLE_AV             playerSprite, False
+        LIBSPRITE_ENABLE_AV             rivalSprite, False
+        jmp MENU_LOOP
+
+MENU_END
+        LIBSPRITE_ENABLE_AV             playerSprite, True
+        LIBSPRITE_ENABLE_AV             rivalSprite, True
+        jmp GAMELOOP
+
+##{0:0:0:gamePlayer.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\gamePlayer.asm
+
+;==============================================================================
+; Constants
+
+PlayerFrame             = 4
+PlayerHorizontalSpeed   = 5
+PlayerVerticalSpeed     = 5
+PlayerXMinHigh          = 0     ; 0*256 + 24 = 24  minX
+PlayerXMinLow           = 24
+PlayerXMaxHigh          = 1     ; 1*256 + 64 = 320 maxX
+PlayerXMaxLow           = 64
+PlayerYMin              = 60
+PlayerYMax              = 229 
+
+;===============================================================================
+; Variables
+
+playerSprite    byte 0
+playerXHigh     byte 0
+playerXLow      byte 175
+PlayerY         byte 229
+
+;===============================================================================
+; Macros/Subroutines
+
+gamePlayerInit
+        
+        LIBSPRITE_ENABLE_AV             playerSprite, True
+        LIBSPRITE_SETFRAME_AV           playerSprite, PlayerFrame
+        LIBSPRITE_SETCOLOR_AV           playerSprite, LightGray
+        LIBSPRITE_PLAYANIM_AVVVV playerSprite,0,3,1,TRUE
+        rts
+
+;===============================================================================
+
+gamePlayerUpdate      
+
+        jsr gamePlayerUpdatePosition
+
+        rts
+
+;===============================================================================
+
+gamePlayerUpdatePosition
+
+        LIBINPUT_GETHELD GameportLeftMask
+        bne gPUPRight
+        LIBMATH_SUB16BIT_AAVVAA playerXHigh, PlayerXLow, 0, PlayerHorizontalSpeed, playerXHigh, PlayerXLow
+gPUPRight
+        LIBINPUT_GETHELD GameportRightMask
+        bne gPUPUp
+        LIBMATH_ADD16BIT_AAVVAA playerXHigh, PlayerXLow, 0, PlayerHorizontalSpeed, playerXHigh, PlayerXLow
+gPUPUp
+        LIBINPUT_GETHELD GameportUpMask
+        bne gPUPDown
+        LIBMATH_SUB8BIT_AVA PlayerY, PlayerVerticalSpeed, PlayerY
+gPUPDown
+        LIBINPUT_GETHELD GameportDownMask
+        bne gPUPEndmove
+        LIBMATH_ADD8BIT_AVA PlayerY, PlayerVerticalSpeed, PlayerY        
+gPUPEndmove
+
+        ; clamp the player x position
+        LIBMATH_MIN16BIT_AAVV playerXHigh, playerXLow, PlayerXMaxHigh, PlayerXMaxLow
+        LIBMATH_MAX16BIT_AAVV playerXHigh, playerXLow, PlayerXMinHigh, PlayerXMinLow
+        
+        ; clamp the player y position
+        LIBMATH_MIN8BIT_AV playerY, PlayerYMax
+        LIBMATH_MAX8BIT_AV playerY, PlayerYMin
+
+        ; set the sprite position
+        LIBSPRITE_SETPOSITION_AAAA playerSprite, playerXHigh, PlayerXLow, PlayerY
+
+        rts
+
+
+##{0:0:0:gameRival.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\gameRival.asm
+
+; Constants
+
+RivalFrame             = 4
+PlayerHorizontalSpeed   = 5
+PlayerVerticalSpeed     = 5
+PlayerXMinHigh          = 0     ; 0*256 + 24 = 24  minX
+PlayerXMinLow           = 24
+PlayerXMaxHigh          = 1     ; 1*256 + 64 = 320 maxX
+PlayerXMaxLow           = 64
+PlayerYMin              = 60
+PlayerYMax              = 229 
+
+;===============================================================================
+; Variables
+
+rivalSprite    byte 1
+rivalXHigh     byte 0
+rivalXLow      byte 20
+rivalY         byte 229
+
+;===============================================================================
+; Macros/Subroutines
+
+gameEnemyInit
+        
+        LIBSPRITE_ENABLE_AV             rivalSprite, True
+        LIBSPRITE_SETFRAME_AV           rivalSprite, RivalFrame
+        LIBSPRITE_SETCOLOR_AV           rivalSprite, Cyan
+        LIBSPRITE_PLAYANIM_AVVVV rivalSprite,0,3,1,TRUE
+        LIBSPRITE_SETPOSITION_AAAA rivalSprite, rivalXHigh, rivalXLow, rivalY
+        rts
+
+enemyCollision
+        jsr AssignRandomValueIntoLDA 
+        sta SP1X     
+        jsr AssignRandomValueIntoLDA 
+        sta SP1Y   
+        jsr INCREASE_SCORE
+        rts
+
+
+
+
+##{0:0:0:libInput.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\libInput.asm
+
+;===============================================================================
+; Constants
+
+ ; use joystick 2, change to CIAPRB for joystick 1
+JoystickRegister        = CIAPRA
+
+GameportUpMask          = %00000001
+GameportDownMask        = %00000010
+GameportLeftMask        = %00000100
+GameportRightMask       = %00001000
+GameportFireMask        = %00010000
+FireDelayMax            = 30
+
+;===============================================================================
+; Variables
+
+gameportLastFrame       byte 0
+gameportThisFrame       byte 0
+gameportDiff            byte 0
+fireDelay               byte 0
+fireBlip                byte 1 ; reversed logic to match other input
+
+;===============================================================================
+; Macros/Subroutines
+
+defm    LIBINPUT_GETHELD ; (buttonMask)
+
+        lda gameportThisFrame
+        and #/1
+        endm ; test with bne on return
+
+;===============================================================================
+
+defm    LIBINPUT_GETFIREPRESSED
+     
+        lda #1
+        sta fireBlip ; clear Fire flag
+
+        ; is fire held?
+        lda gameportThisFrame
+        and #GameportFireMask
+        bne @notheld
+
+@held
+        ; is this 1st frame?
+        lda gameportDiff
+        and #GameportFireMask
+        
+        beq @notfirst
+        lda #0
+        sta fireBlip ; Fire
+
+        ; reset delay
+        lda #FireDelayMax
+        sta fireDelay        
+@notfirst
+
+        ; is the delay zero?
+        lda fireDelay
+        bne @notheld
+        lda #0
+        sta fireBlip ; Fire
+        ; reset delay
+        lda #FireDelayMax
+        sta fireDelay   
+        
+@notheld 
+        lda fireBlip
+        endm ; test with bne on return
+
+;===============================================================================
+
+libInputUpdate
+
+        lda JoystickRegister
+        sta GameportThisFrame
+
+        eor GameportLastFrame
+        sta GameportDiff
+
+        
+        lda FireDelay
+        beq lIUDelayZero
+        dec FireDelay
+lIUDelayZero
+
+        lda GameportThisFrame
+        sta GameportLastFrame
+
+        rts
+
+##{0:0:0:libMath.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\libMath.asm
+
+;===============================================================================
+; Macros/Subroutines
+
+defm    LIBMATH_ABS_AA  ; /1 = Number (Address)
+                        ; /2 = Result (Address)
+        lda /1
+        bpl @positive
+        eor #$FF        ; invert the bits
+        sta /2
+        inc /2          ; add 1 to give the two's compliment
+        jmp @done
+@positive
+        sta /2
+@done
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_ADD8BIT_AAA
+                ; /1 = 1st Number (Address)
+                ; /2 = 2nd Number (Address)
+                ; /3 = Sum (Address)
+        clc     ; Clear carry before add
+        lda /1  ; Get first number
+        adc /2 ; Add to second number
+        sta /3  ; Store in sum
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_ADD8BIT_AVA
+                ; /1 = 1st Number (Address)
+                ; /2 = 2nd Number (Value)
+                ; /3 = Sum (Address)
+        clc     ; Clear carry before add
+        lda /1  ; Get first number
+        adc #/2 ; Add to second number
+        sta /3  ; Store in sum
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_ADD16BIT_AAVAAA
+                ; /1 = 1st Number High Byte (Address)
+                ; /2 = 1st Number Low Byte (Address)
+                ; /3 = 2nd Number High Byte (Value)
+                ; /4 = 2nd Number Low Byte (Address)
+                ; /5 = Sum High Byte (Address)
+                ; /6 = Sum Low Byte (Address)
+        clc     ; Clear carry before first add
+        lda /2  ; Get LSB of first number
+        adc /4  ; Add LSB of second number
+        sta /6  ; Store in LSB of sum
+        lda /1  ; Get MSB of first number
+        adc #/3 ; Add carry and MSB of NUM2
+        sta /5  ; Store sum in MSB of sum
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_ADD16BIT_AAVVAA
+                ; /1 = 1st Number High Byte (Address)
+                ; /2 = 1st Number Low Byte (Address)
+                ; /3 = 2nd Number High Byte (Value)
+                ; /4 = 2nd Number Low Byte (Value)
+                ; /5 = Sum High Byte (Address)
+                ; /6 = Sum Low Byte (Address)
+        clc     ; Clear carry before first add
+        lda /2  ; Get LSB of first number
+        adc #/4 ; Add LSB of second number
+        sta /6  ; Store in LSB of sum
+        lda /1  ; Get MSB of first number
+        adc #/3 ; Add carry and MSB of NUM2
+        sta /5  ; Store sum in MSB of sum
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_MIN8BIT_AV      ; /1 = Number 1 (Address)
+                                ; /2 = Number 2 (Value)
+        
+        lda #/2                 ; load Number 2
+        cmp /1                  ; compare with Number 1
+        bcs @skip               ; if Number 2 >= Number 1 then skip
+        sta /1                  ; else replace Number1 with Number2
+@skip
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_MAX8BIT_AV      ; /1 = Number 1 (Address)
+                                ; /2 = Number 2 (Value)
+        
+        lda #/2                 ; load Number 2
+        cmp /1                  ; compare with Number 1
+        bcc @skip               ; if Number 2 < Number 1 then skip
+        sta /1                  ; else replace Number1 with Number2
+@skip
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_MIN16BIT_AAVV   ; /1 = Number 1 High (Address)
+                                ; /2 = Number 1 Low (Address)
+                                ; /3 = Number 2 High (Value)
+                                ; /4 = Number 2 Low (Value)
+        
+        ; high byte
+        lda /1                  ; load Number 1
+        cmp #/3                 ; compare with Number 2
+        bmi @skip               ; if Number 1 < Number 2 then skip
+        lda #/3
+        sta /1                  ; else replace Number1 with Number2
+
+        ; low byte
+        lda #/4                 ; load Number 2
+        cmp /2                  ; compare with Number 1
+        bcs @skip               ; if Number 2 >= Number 1 then skip
+        sta /2                  ; else replace Number1 with Number2
+@skip
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_MAX16BIT_AAVV   ; /1 = Number 1 High (Address)
+                                ; /2 = Number 1 Low (Address)
+                                ; /3 = Number 2 High (Value)
+                                ; /4 = Number 2 Low (Value)
+        
+        ; high byte
+        lda #/3                 ; load Number 2
+        cmp /1                  ; compare with Number 1
+        bcc @skip               ; if Number 2 < Number 1 then skip
+        sta /1                  ; else replace Number1 with Number2
+
+        ; low byte
+        lda #/4                 ; load Number 2
+        cmp /2                  ; compare with Number 1
+        bcc @skip               ; if Number 2 < Number 1 then skip
+        sta /2                  ; else replace Number1 with Number2
+
+@skip
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_SUB8BIT_AAA
+                ; /1 = 1st Number (Address)
+                ; /2 = 2nd Number (Address)
+                ; /3 = Sum (Address)
+        sec     ; sec is the same as clear borrow
+        lda /1  ; Get first number
+        sbc /2  ; Subtract second number
+        sta /3  ; Store in sum
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_SUB8BIT_AVA
+                ; /1 = 1st Number (Address)
+                ; /2 = 2nd Number (Value)
+                ; /3 = Sum (Address)
+        sec     ; sec is the same as clear borrow
+        lda /1  ; Get first number
+        sbc #/2 ; Subtract second number
+        sta /3  ; Store in sum
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_SUB16BIT_AAVAAA
+                ; /1 = 1st Number High Byte (Address)
+                ; /2 = 1st Number Low Byte (Address)
+                ; /3 = 2nd Number High Byte (Value)
+                ; /4 = 2nd Number Low Byte (Address)
+                ; /5 = Sum High Byte (Address)
+                ; /6 = Sum Low Byte (Address)
+        sec     ; sec is the same as clear borrow
+        lda /2  ; Get LSB of first number
+        sbc /4 ; Subtract LSB of second number
+        sta /6  ; Store in LSB of sum
+        lda /1  ; Get MSB of first number
+        sbc #/3 ; Subtract borrow and MSB of NUM2
+        sta /5  ; Store sum in MSB of sum
+        endm
+
+;==============================================================================
+
+defm    LIBMATH_SUB16BIT_AAVVAA
+                ; /1 = 1st Number High Byte (Address)
+                ; /2 = 1st Number Low Byte (Address)
+                ; /3 = 2nd Number High Byte (Value)
+                ; /4 = 2nd Number Low Byte (Value)
+                ; /5 = Sum High Byte (Address)
+                ; /6 = Sum Low Byte (Address)
+        sec     ; sec is the same as clear borrow
+        lda /2  ; Get LSB of first number
+        sbc #/4 ; Subtract LSB of second number
+        sta /6  ; Store in LSB of sum
+        lda /1  ; Get MSB of first number
+        sbc #/3 ; Subtract borrow and MSB of NUM2
+        sta /5  ; Store sum in MSB of sum
+        endm
+
+##{0:0:0:libScreen.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\libScreen.asm
+
+;===============================================================================
+; Constants
+
+Black           = 0
+White           = 1
+Red             = 2
+Cyan            = 3 
+Purple          = 4
+Green           = 5
+Blue            = 6
+Yellow          = 7
+Orange          = 8
+Brown           = 9
+LightRed        = 10
+DarkGray        = 11
+MediumGray      = 12
+LightGreen      = 13
+LightBlue       = 14
+LightGray       = 15
+SpaceCharacter  = 32
+
+False           = 0
+True            = 1
+
+;===============================================================================
+; Variables
+
+Operator Calc
+
+ScreenRAMRowStartLow ;  SCREENRAM + 40*0, 40*1, 40*2 ... 40*24
+        byte <SCREENRAM,     <SCREENRAM+40,  <SCREENRAM+80
+        byte <SCREENRAM+120, <SCREENRAM+160, <SCREENRAM+200
+        byte <SCREENRAM+240, <SCREENRAM+280, <SCREENRAM+320
+        byte <SCREENRAM+360, <SCREENRAM+400, <SCREENRAM+440
+        byte <SCREENRAM+480, <SCREENRAM+520, <SCREENRAM+560
+        byte <SCREENRAM+600, <SCREENRAM+640, <SCREENRAM+680
+        byte <SCREENRAM+720, <SCREENRAM+760, <SCREENRAM+800
+        byte <SCREENRAM+840, <SCREENRAM+880, <SCREENRAM+920
+        byte <SCREENRAM+960
+
+ScreenRAMRowStartHigh ;  SCREENRAM + 40*0, 40*1, 40*2 ... 40*24
+        byte >SCREENRAM,     >SCREENRAM+40,  >SCREENRAM+80
+        byte >SCREENRAM+120, >SCREENRAM+160, >SCREENRAM+200
+        byte >SCREENRAM+240, >SCREENRAM+280, >SCREENRAM+320
+        byte >SCREENRAM+360, >SCREENRAM+400, >SCREENRAM+440
+        byte >SCREENRAM+480, >SCREENRAM+520, >SCREENRAM+560
+        byte >SCREENRAM+600, >SCREENRAM+640, >SCREENRAM+680
+        byte >SCREENRAM+720, >SCREENRAM+760, >SCREENRAM+800
+        byte >SCREENRAM+840, >SCREENRAM+880, >SCREENRAM+920
+        byte >SCREENRAM+960
+
+ColorRAMRowStartLow ;  COLORRAM + 40*0, 40*1, 40*2 ... 40*24
+        byte <COLORRAM,     <COLORRAM+40,  <COLORRAM+80
+        byte <COLORRAM+120, <COLORRAM+160, <COLORRAM+200
+        byte <COLORRAM+240, <COLORRAM+280, <COLORRAM+320
+        byte <COLORRAM+360, <COLORRAM+400, <COLORRAM+440
+        byte <COLORRAM+480, <COLORRAM+520, <COLORRAM+560
+        byte <COLORRAM+600, <COLORRAM+640, <COLORRAM+680
+        byte <COLORRAM+720, <COLORRAM+760, <COLORRAM+800
+        byte <COLORRAM+840, <COLORRAM+880, <COLORRAM+920
+        byte <COLORRAM+960
+
+ColorRAMRowStartHigh ;  COLORRAM + 40*0, 40*1, 40*2 ... 40*24
+        byte >COLORRAM,     >COLORRAM+40,  >COLORRAM+80
+        byte >COLORRAM+120, >COLORRAM+160, >COLORRAM+200
+        byte >COLORRAM+240, >COLORRAM+280, >COLORRAM+320
+        byte >COLORRAM+360, >COLORRAM+400, >COLORRAM+440
+        byte >COLORRAM+480, >COLORRAM+520, >COLORRAM+560
+        byte >COLORRAM+600, >COLORRAM+640, >COLORRAM+680
+        byte >COLORRAM+720, >COLORRAM+760, >COLORRAM+800
+        byte >COLORRAM+840, >COLORRAM+880, >COLORRAM+920
+        byte >COLORRAM+960
+
+Operator HiLo
+
+screenColumn      byte 0
+screenScrollXValue byte 0
+
+;===============================================================================
+; Macros/Subroutines
+
+defm    LIBSCREEN_DEBUG8BIT_VVA
+                        ; /1 = X Position Absolute
+                        ; /2 = Y Position Absolute
+                        ; /3 = 1st Number Low Byte Pointer
+        
+        lda #White
+        sta $0286       ; set text color
+        lda #$20        ; space
+        jsr $ffd2       ; print 4 spaces
+        jsr $ffd2
+        jsr $ffd2
+        jsr $ffd2
+        ;jsr $E566      ; reset cursor
+        ldx #/2         ; Select row 
+        ldy #/1         ; Select column 
+        jsr $E50C       ; Set cursor 
+
+        lda #0
+        ldx /3
+        jsr $BDCD       ; print number
+        endm
+
+;===============================================================================
+
+defm    LIBSCREEN_DEBUG16BIT_VVAA
+                        ; /1 = X Position Absolute
+                        ; /2 = Y Position Absolute
+                        ; /3 = 1st Number High Byte Pointer
+                        ; /4 = 1st Number Low Byte Pointer
+        
+        lda #White
+        sta $0286       ; set text color
+        lda #$20        ; space
+        jsr $ffd2       ; print 4 spaces
+        jsr $ffd2
+        jsr $ffd2
+        jsr $ffd2
+        ;jsr $E566      ; reset cursor
+        ldx #/2         ; Select row 
+        ldy #/1         ; Select column 
+        jsr $E50C       ; Set cursor 
+
+        lda /3
+        ldx /4
+        jsr $BDCD       ; print number
+        endm
+
+;==============================================================================
+defm    LIBSCREEN_DRAWTEXT_AAAV ; /1 = X Position 0-39 (Address)
+                                ; /2 = Y Position 0-24 (Address)
+                                ; /3 = 0 terminated string (Address)
+                                ; /4 = Text Color (Value)
+
+        ldy /2 ; load y position as index into list
+        
+        lda ScreenRAMRowStartLow,Y ; load low address byte
+        sta ZeroPageLow
+
+        lda ScreenRAMRowStartHigh,Y ; load high address byte
+        sta ZeroPageHigh
+
+        ldy /1 ; load x position into Y register
+
+        ldx #0
+@loop   lda /3,X
+        cmp #0
+        beq @done
+        sta (ZeroPageLow),Y
+        inx
+        iny
+        jmp @loop
+@done
+
+
+        ldy /2 ; load y position as index into list
+        
+        lda ColorRAMRowStartLow,Y ; load low address byte
+        sta ZeroPageLow
+
+        lda ColorRAMRowStartHigh,Y ; load high address byte
+        sta ZeroPageHigh
+
+        ldy /1 ; load x position into Y register
+
+        ldx #0
+@loop2  lda /3,X
+        cmp #0
+        beq @done2
+        lda #/4
+        sta (ZeroPageLow),Y
+        inx
+        iny
+        jmp @loop2
+@done2
+
+        endm
+;===============================================================================
+
+defm    LIBSCREEN_DRAWDECIMAL_AAAV ; /1 = X Position 0-39 (Address)
+                                ; /2 = Y Position 0-24 (Address)
+                                ; /3 = decimal number 2 nybbles (Address)
+                                ; /4 = Text Color (Value)
+
+        ldy /2 ; load y position as index into list
+        
+        lda ScreenRAMRowStartLow,Y ; load low address byte
+        sta ZeroPageLow
+
+        lda ScreenRAMRowStartHigh,Y ; load high address byte
+        sta ZeroPageHigh
+
+        ldy /1 ; load x position into Y register
+
+        ; get high nybble
+        lda /3
+        and #$F0
+        
+        ; convert to ascii
+        lsr
+        lsr
+        lsr
+        lsr
+        ora #$30
+
+        sta (ZeroPageLow),Y
+
+        ; move along to next screen position
+        iny 
+
+        ; get low nybble
+        lda /3
+        and #$0F
+
+        ; convert to ascii
+        ora #$30  
+
+        sta (ZeroPageLow),Y
+    
+
+        ; now set the colors
+        ldy /2 ; load y position as index into list
+        
+        lda ColorRAMRowStartLow,Y ; load low address byte
+        sta ZeroPageLow
+
+        lda ColorRAMRowStartHigh,Y ; load high address byte
+        sta ZeroPageHigh
+
+        ldy /1 ; load x position into Y register
+
+        lda #/4
+        sta (ZeroPageLow),Y
+
+        ; move along to next screen position
+        iny 
+        
+        sta (ZeroPageLow),Y
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_GETCHAR  ; /1 = Return character code (Address)
+        lda (ZeroPageLow),Y
+        sta /1
+        endm
+
+;===============================================================================
+
+defm    LIBSCREEN_PIXELTOCHAR_AAVAVAAAA
+                                ; /1 = XHighPixels      (Address)
+                                ; /2 = XLowPixels       (Address)
+                                ; /3 = XAdjust          (Value)
+                                ; /4 = YPixels          (Address)
+                                ; /5 = YAdjust          (Value)
+                                ; /6 = XChar            (Address)
+                                ; /7 = XOffset          (Address)
+                                ; /8 = YChar            (Address)
+                                ; /9 = YOffset          (Address)
+                                
+
+        lda /1
+        sta ZeroPageParam1
+        lda /2
+        sta ZeroPageParam2
+        lda #/3
+        sta ZeroPageParam3
+        lda /4
+        sta ZeroPageParam4
+        lda #/5
+        sta ZeroPageParam5
+        
+        jsr libScreen_PixelToChar
+
+        lda ZeroPageParam6
+        sta /6
+        lda ZeroPageParam7
+        sta /7
+        lda ZeroPageParam8
+        sta /8
+        lda ZeroPageParam9
+        sta /9
+
+        endm
+
+libScreen_PixelToChar
+
+        ; subtract XAdjust pixels from XPixels as left of a sprite is first visible at x = 24
+        LIBMATH_SUB16BIT_AAVAAA ZeroPageParam1, ZeroPageParam2, 0, ZeroPageParam3, ZeroPageParam6, ZeroPageParam7
+
+        lda ZeroPageParam6
+        sta ZeroPageTemp
+
+        ; divide by 8 to get character X
+        lda ZeroPageParam7
+        lsr A ; divide by 2
+        lsr A ; and again = /4
+        lsr A ; and again = /8
+        sta ZeroPageParam6
+
+        ; AND 7 to get pixel offset X
+        lda ZeroPageParam7
+        and #7
+        sta ZeroPageParam7
+
+        ; Adjust for XHigh
+        lda ZeroPageTemp
+        beq @nothigh
+        LIBMATH_ADD8BIT_AVA ZeroPageParam6, 32, ZeroPageParam6 ; shift across 32 chars
+
+@nothigh
+        ; subtract YAdjust pixels from YPixels as top of a sprite is first visible at y = 50
+        LIBMATH_SUB8BIT_AAA ZeroPageParam4, ZeroPageParam5, ZeroPageParam9
+
+
+        ; divide by 8 to get character Y
+        lda ZeroPageParam9
+        lsr A ; divide by 2
+        lsr A ; and again = /4
+        lsr A ; and again = /8
+        sta ZeroPageParam8
+
+        ; AND 7 to get pixel offset Y
+        lda ZeroPageParam9
+        and #7
+        sta ZeroPageParam9
+
+        rts
+
+;==============================================================================
+
+defm    LIBSCREEN_SCROLLXLEFT_A          ; /1 = update subroutine (Address)
+
+        dec screenScrollXValue
+        lda screenScrollXValue
+        and #%00000111
+        sta screenScrollXValue
+
+        lda SCROLX
+        and #%11111000
+        ora screenScrollXValue
+        sta SCROLX
+
+        lda screenScrollXValue
+        cmp #7
+        bne @finished
+
+        ; move to next column
+        inc screenColumn
+        jsr /1 ; call the passed in function to update the screen rows
+@finished
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SCROLLXRIGHT_A         ; /1 = update subroutine (Address)
+
+        inc screenScrollXValue
+        lda screenScrollXValue
+        and #%00000111
+        sta screenScrollXValue
+
+        lda SCROLX
+        and #%11111000
+        ora screenScrollXValue
+        sta SCROLX
+
+        lda screenScrollXValue
+        cmp #0
+        bne @finished
+
+        ; move to previous column
+        dec screenColumn
+        jsr /1 ; call the passed in function to update the screen rows
+@finished
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SCROLLXRESET_A         ; /1 = update subroutine (Address)
+
+        lda #0
+        sta screenColumn
+        sta screenScrollXValue
+
+        lda SCROLX
+        and #%11111000
+        ora screenScrollXValue
+        sta SCROLX
+
+        jsr /1 ; call the passed in function to update the screen rows
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETSCROLLXVALUE_A     ; /1 = ScrollX value (Address)
+
+        lda SCROLX
+        and #%11111000
+        ora /1
+        sta SCROLX
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETSCROLLXVALUE_V     ; /1 = ScrollX value (Value)
+
+        lda SCROLX
+        and #%11111000
+        ora #/1
+        sta SCROLX
+
+        endm
+
+;==============================================================================
+
+; Sets 1000 bytes of memory from start address with a value
+defm    LIBSCREEN_SET1000       ; /1 = Start  (Address)
+                                ; /2 = Number (Value)
+
+        lda #/2                 ; Get number to set
+        ldx #250                ; Set loop value
+@loop   dex                     ; Step -1
+        sta /1,x                ; Set start + x
+        sta /1+250,x            ; Set start + 250 + x
+        sta /1+500,x            ; Set start + 500 + x
+        sta /1+750,x            ; Set start + 750 + x
+        bne @loop               ; If x<>0 loop
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SET38COLUMNMODE
+
+        lda SCROLX
+        and #%11110111 ; clear bit 3
+        sta SCROLX
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SET40COLUMNMODE
+
+        lda SCROLX
+        ora #%00001000 ; set bit 3
+        sta SCROLX
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETCHARMEMORY  ; /1 = Character Memory Slot (Value)
+        ; point vic (lower 4 bits of $d018)to new character data
+        lda VMCSB
+        and #%11110000 ; keep higher 4 bits
+        ; p208 M Jong book
+        ora #/1;$0E ; maps to  $3800 memory address
+        sta VMCSB
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETCHAR_V  ; /1 = Character Code (Value)
+        lda #/1
+        sta (ZeroPageLow),Y
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETCHAR_A  ; /1 = Character Code (Address)
+        lda /1
+        sta (ZeroPageLow),Y
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETCHARPOSITION_AA    ; /1 = X Position 0-39 (Address)
+                                ; /2 = Y Position 0-24 (Address)
+        
+        ldy /2 ; load y position as index into list
+        
+        lda ScreenRAMRowStartLow,Y ; load low address byte
+        sta ZeroPageLow
+
+        lda ScreenRAMRowStartHigh,Y ; load high address byte
+        sta ZeroPageHigh
+
+        ldy /1 ; load x position into Y register
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETCOLORPOSITION_AA   ; /1 = X Position 0-39 (Address)
+                                ; /2 = Y Position 0-24 (Address)
+                               
+        ldy /2 ; load y position as index into list
+        
+        lda ColorRAMRowStartLow,Y ; load low address byte
+        sta ZeroPageLow
+
+        lda ColorRAMRowStartHigh,Y ; load high address byte
+        sta ZeroPageHigh
+
+        ldy /1 ; load x position into Y register
+
+        endm
+
+;===============================================================================
+
+; Sets the border and background colors
+defm    LIBSCREEN_SETCOLORS     ; /1 = Border Color       (Value)
+                                ; /2 = Background Color 0 (Value)
+                                ; /3 = Background Color 1 (Value)
+                                ; /4 = Background Color 2 (Value)
+                                ; /5 = Background Color 3 (Value)
+                                
+        lda #/1                 ; Color0 -> A
+        sta EXTCOL              ; A -> EXTCOL
+        lda #/2                 ; Color1 -> A
+        sta BGCOL0              ; A -> BGCOL0
+        lda #/3                 ; Color2 -> A
+        sta BGCOL1              ; A -> BGCOL1
+        lda #/4                 ; Color3 -> A
+        sta BGCOL2              ; A -> BGCOL2
+        lda #/5                 ; Color4 -> A
+        sta BGCOL3              ; A -> BGCOL3
+
+        endm
+
+;==============================================================================
+
+defm    LIBSCREEN_SETMULTICOLORMODE
+
+        lda SCROLX
+        ora #%00010000 ; set bit 5
+        sta SCROLX
+
+        endm
+
+;===============================================================================
+
+; Waits for a given scanline 
+defm    LIBSCREEN_WAIT_V        ; /1 = Scanline (Value)
+
+@loop   lda #/1                 ; Scanline -> A
+        cmp RASTER              ; Compare A to current raster line
+        bne @loop               ; Loop if raster line not reached 255
+
+        endm
+
+
+
+##{0:0:0:libSprite.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\libSprite.asm
+
+;===============================================================================
+; Constants
+
+SpriteAnimsMax = 8
+
+;===============================================================================
+; Variables
+
+spriteAnimsActive       dcb SpriteAnimsMax, 0
+spriteAnimsStartFrame   dcb SpriteAnimsMax, 0
+spriteAnimsFrame        dcb SpriteAnimsMax, 0
+spriteAnimsEndFrame     dcb SpriteAnimsMax, 0
+spriteAnimsStopFrame    dcb SpriteAnimsMax, 0
+spriteAnimsSpeed        dcb SpriteAnimsMax, 0
+spriteAnimsDelay        dcb SpriteAnimsMax, 0
+spriteAnimsLoop         dcb SpriteAnimsMax, 0
+
+spriteAnimsCurrent       byte 0
+spriteAnimsFrameCurrent  byte 0
+spriteAnimsEndFrameCurrent  byte 0
+
+spriteNumberMask  byte %00000001, %00000010, %00000100, %00001000,                                     %00010000, %00100000, %01000000, %10000000
+
+;===============================================================================
+; Macros/Subroutines
+
+
+defm    LIBSPRITE_DIDCOLLIDEWITHSPRITE_A  ; /1 = Sprite Number (Address)
+       
+        ldy /1
+        lda SpriteNumberMask,y
+        and SPSPCL
+        
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_ENABLE_AV                ; /1 = Sprite Number (Address)
+                                           ; /2 = Enable/Disable (Value)
+        ldy /1
+        lda spriteNumberMask,y
+        
+        ldy #/2
+        beq @disable
+@enable
+        ora SPENA ; merge with the current SpriteEnable register
+        sta SPENA ; set the new value into the SpriteEnable register
+        jmp @done 
+@disable
+        eor #$FF ; get mask compliment
+        and SPENA
+        sta SPENA
+@done
+        endm
+
+;==============================================================================
+
+defm    LIBSPRITE_ISANIMPLAYING_A      ; /1 = Sprite Number    (Address)
+
+        ldy /1
+        lda spriteAnimsActive,y
+
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_MULTICOLORENABLE_AA    ; /1 = Sprite Number (Address)
+                                         ; /2 = Enable/Disable (Address)
+        ldy /1
+        lda spriteNumberMask,y
+        
+        ldy /2
+        beq @disable
+@enable
+        ora SPMC
+        sta SPMC
+        jmp @done 
+@disable
+        eor #$FF ; get mask compliment
+        and SPMC
+        sta SPMC
+@done
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_MULTICOLORENABLE_AV   ; /1 = Sprite Number (Address)
+                                        ; /2 = Enable/Disable (Value)
+        ldy /1
+        lda spriteNumberMask,y
+        
+        ldy #/2
+        beq @disable
+@enable
+        ora SPMC
+        sta SPMC
+        jmp @done 
+@disable
+        eor #$FF ; get mask compliment
+        and SPMC
+        sta SPMC
+@done
+        endm
+
+;==============================================================================
+
+defm    LIBSPRITE_PLAYANIM_AVVVV        ; /1 = Sprite Number    (Address)
+                                        ; /2 = StartFrame       (Value)
+                                        ; /3 = EndFrame         (Value)
+                                        ; /4 = Speed            (Value)
+                                        ; /5 = Loop True/False  (Value)
+
+        ldy /1
+
+        lda #True
+        sta spriteAnimsActive,y
+        lda #/2
+        sta spriteAnimsStartFrame,y
+        sta spriteAnimsFrame,y
+        lda #/3
+        sta spriteAnimsEndFrame,y
+        lda #/4
+        sta spriteAnimsSpeed,y
+        sta spriteAnimsDelay,y
+        lda #/5
+        sta spriteAnimsLoop,y
+
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_SETCOLOR_AV           ; /1 = Sprite Number    (Address)
+                                        ; /2 = Color            (Value)
+        ldy /1
+        lda #/2
+        sta SP0COL,y
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_SETCOLOR_AA           ; /1 = Sprite Number    (Address)
+                                        ; /2 = Color            (Address)
+        ldy /1
+        lda /2
+        sta SP0COL,y
+        endm
+
+;==============================================================================
+
+defm    LIBSPRITE_SETFRAME_AA           ; /1 = Sprite Number    (Address)
+                                        ; /2 = Anim Index       (Address)
+        ldy /1
+        
+        clc     ; Clear carry before add
+        lda /2  ; Get first number
+        adc #SPRITERAM ; Add
+         
+        sta SPRITE0,y
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_SETFRAME_AV           ; /1 = Sprite Number    (Address)
+                                        ; /2 = Anim Index       (Value)
+        ldy /1
+        
+        clc     ; Clear carry before add
+        lda #/2  ; Get first number
+        adc #SPRITERAM ; Add
+         
+        sta SPRITE0,y
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_SETMULTICOLORS_VV     ; /1 = Color 1          (Value)
+                                        ; /2 = Color 2          (Value)
+        lda #/1
+        sta SPMC0
+        lda #/2
+        sta SPMC1
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_SETPOSITION_AAAA      ; /1 = Sprite Number    (Address)
+                                        ; /2 = XPos High Byte   (Address)
+                                        ; /3 = XPos Low Byte    (Address)
+                                        ; /4 = YPos             (Address)
+
+        lda /1                  ; get sprite number
+        asl                     ; *2 as registers laid out 2 apart
+        tay                     ; copy accumulator to y register
+
+        lda /3                  ; get XPos Low Byte
+        sta SP0X,y              ; set the XPos sprite register
+        lda /4                  ; get YPos
+        sta SP0Y,y              ; set the YPos sprite register
+        
+        ldy /1
+        lda spriteNumberMask,y  ; get sprite mask
+        
+        eor #$FF                ; get compliment
+        and MSIGX               ; clear the bit
+        sta MSIGX               ; and store
+
+        ldy /2                  ; get XPos High Byte
+        beq @end                ; skip if XPos High Byte is zero
+        ldy /1
+        lda spriteNumberMask,y  ; get sprite mask
+        
+        ora MSIGX               ; set the bit
+        sta MSIGX               ; and store
+@end
+        endm
+
+;===============================================================================
+
+defm    LIBSPRITE_SETPOSITION_VAAA      ; /1 = Sprite Number    (Value)
+                                        ; /2 = XPos High Byte   (Address)
+                                        ; /3 = XPos Low Byte    (Address)
+                                        ; /4 = YPos             (Address)
+
+        ldy #/1*2               ; *2 as registers laid out 2 apart
+        lda /3                  ; get XPos Low Byte
+        sta SP0X,y              ; set the XPos sprite register
+        lda /4                  ; get YPos
+        sta SP0Y,y              ; set the YPos sprite register
+        
+        lda #1<<#/1             ; shift 1 into sprite bit position
+        eor #$FF                ; get compliment
+        and MSIGX               ; clear the bit
+        sta MSIGX               ; and store
+
+        ldy /2                  ; get XPos High Byte
+        beq @end                ; skip if XPos High Byte is zero
+        lda #1<<#/1             ; shift 1 into sprite bit position
+        ora MSIGX               ; set the bit
+        sta MSIGX               ; and store
+@end
+        endm
+
+
+;===============================================================================
+
+defm    LIBSPRITE_SETPRIORITY_AV ; /1 = Sprite Number           (Address)
+                                 ; /2 = True = Back, False = Front (Value)
+        ldy /1
+        lda spriteNumberMask,y
+        
+        ldy #/2
+        beq @disable
+@enable
+        ora SPBGPR ; merge with the current SPBGPR register
+        sta SPBGPR ; set the new value into the SPBGPR register
+        jmp @done 
+@disable
+        eor #$FF ; get mask compliment
+        and SPBGPR
+        sta SPBGPR
+@done
+        endm
+
+;==============================================================================
+
+defm    LIBSPRITE_STOPANIM_A            ; /1 = Sprite Number    (Address)
+
+        ldy /1
+        lda #0
+        sta spriteAnimsActive,y
+
+        endm
+
+;==============================================================================
+
+libSpritesUpdate
+
+        ldx #0
+lSoULoop
+        ; skip this sprite anim if not active
+        lda spriteAnimsActive,X
+        bne lSoUActive
+        jmp lSoUSkip
+lSoUActive
+
+        stx spriteAnimsCurrent
+        lda spriteAnimsFrame,X
+        sta spriteAnimsFrameCurrent
+
+        lda spriteAnimsEndFrame,X
+        sta spriteAnimsEndFrameCurrent
+        
+        LIBSPRITE_SETFRAME_AA spriteAnimsCurrent, spriteAnimsFrameCurrent
+
+        dec spriteAnimsDelay,X
+        bne lSoUSkip
+
+        ; reset the delay
+        lda spriteAnimsSpeed,X
+        sta spriteAnimsDelay,X
+
+        ; change the frame
+        inc spriteAnimsFrame,X
+        
+        ; check if reached the end frame
+        lda spriteAnimsEndFrameCurrent
+        cmp spriteAnimsFrame,X
+        bcs lSoUSkip
+
+        ; check if looping
+        lda spriteAnimsLoop,X
+        beq lSoUDestroy
+
+        ; reset the frame
+        lda spriteAnimsStartFrame,X
+        sta spriteAnimsFrame,X
+        jmp lSoUSkip
+
+lSoUDestroy
+        ; turn off
+        lda #False
+        sta spriteAnimsActive,X
+        LIBSPRITE_ENABLE_AV spriteAnimsCurrent, False
+
+lSoUSkip
+        ; loop for each sprite anim
+        inx
+        cpx #SpriteAnimsMax
+        ;bne lSUloop
+        beq lSoUFinished
+        jmp lSoUloop
+lSoUFinished
+
+        rts
+
+##{0:0:0:MathFunctions.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\MathFunctions.asm
+
+;////////////////////////////
+;Math Utils functions  
+AssignRandomValueIntoLDA
+        lda $D41B
+        rts;
+;////////////////////////////
+
+##{0:0:0:ScreenUtils.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\ScreenUtils.asm
+
+;////////////////////////////
+;util functions
+
+BORDER = $d020 
+SCREEN = $d021 
+
+randomBGColour
+        inc SCREEN ; increase screen colour 
+        inc BORDER ; increase border colour 
+        rts
+
+RENDER_HELLO_WORLD
+        lda HELLO_WORLD,x
+        sta $410,x      
+
+        inx 
+        cpx #11         
+        bne RENDER_HELLO_WORLD    ; loop if we are not done yet
+        rts
+
+RENDER_SCORE_TEXT
+        lda SCORE_TEXT,x
+        sta $405,x      
+
+        inx 
+        cpx #7         
+        bne RENDER_SCORE_TEXT    ; loop if we are not done yet
+        rts
+
+RENDER_SCORE
+        lda score,x
+        adc #$30 ;add 30 to get its screen code. hacky. need proper way to convert from int to screen value.
+        sta $410,x
+
+        inx 
+        cpx #1         
+        bne RENDER_SCORE
+        rts
+
+##{0:0:0:StaticStrings.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\StaticStrings.asm
+
+;////////////////////////////
+HELLO_WORLD 
+  text 'hello world'
+  byte 13,00
+
+SCORE_TEXT 
+  text 'Score: '
+  byte 7,00
+;////////////////////////////
+
+##{0:0:0:TODO.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\TODO.asm
+
+;;TODO
+
+;;Clean up the intergration of the old project and the new movement code
+
+##{0:0:0:gameMain.prg}C:\Users\Elliott\Documents\Projects\C64ScratchPad\ScratchPad\\gameMain.asm
+
+;Starting point of the program
+;sys20645
+
+*=$0801 
+  byte $0c,$08,$0a,$00,$9e,$32,$30,$36,$34,$00,$00,$00,$00
+*=$0810 
+
+get = $ffe4 ;input control
+SPACE = $20 ;key value
+W_KEY = $57 ;key value
+E_KEY = $45 ;key value
+T_KEY = $54 ;key value
+S_KEY = $53 ;key value
+A_KEY = $41 ;key value
+D_KEY = $44 ;key value
+NUM_1_KEY = $31 ;key value
+
+MOVEMENT_AMOUNT = #$5
+PRINT_LINE = $AB1E ;basic function
+CLEAR = $E544 ;basic function
+
+score = $0811
+
+
+MSBX    = $D010
+ENABLE  = $D015
+COLLISION_FLAG  = $D01E ;collsion flag
+
+main
+        jmp load
+        jmp gameloop 
+  
+GAMELOOP  
+        ; Wait for scanline 255
+        LIBSCREEN_WAIT_V 255
+
+        jsr libInputUpdate
+
+        jsr libSpritesUpdate
+        jsr gamePlayerUpdate
+        jsr COLLISION
+        jsr CLEAR
+        ldx #$00
+        jsr RenderText 
+        jmp GAMELOOP
+
+RenderText
+        ldx #$00
+        jsr RENDER_SCORE_TEXT
+
+        ldx #$00
+        jsr RENDER_SCORE
+        rts
+
+COLLISION
+;if collision
+        ldy COLLISION_FLAG
+        cpy #%00000011            ;check to see if there has been a collision between sprite 1 and 2
+        beq CollisionBetweenSprite1and2      
+;else  
+        rts
+
+CollisionBetweenSprite1and2
+        jsr enemyCollision
+        rts
+
+INCREASE_SCORE
+        ldX score
+        INC score
+        rts
+
+QUIT ;quit out of the program (Clean up)
+        JSR CLEAR
+        LDA #0
+        STA ENABLE
+        RTS
+
+InitSIDChip
+        LDA #$FF  ; maximum frequency value
+        STA $D40E ; voice 3 frequency low byte
+        STA $D40F ; voice 3 frequency high byte
+        LDA #$80  ; noise waveform, gate bit off
+        STA $D412 ; voice 3 control register
+        rts
+
+POST_LOAD
+        lda #0
+        sta score
+        jsr InitSIDChip
+        jmp MENU_START
+  
+LOAD
+        sei
+        jsr gamePlayerInit        
+        jsr gameEnemyInit
+
+        jmp POST_LOAD
+
