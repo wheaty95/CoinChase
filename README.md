@@ -1,4 +1,4 @@
-A Simple (REALLY simple) "Coin Chase" game for the C64 programmed in assembly.
+A simple (REALLY simple) "Coin Chase" game for the C64 programmed in assembly.
 
 To get the project running:
 
